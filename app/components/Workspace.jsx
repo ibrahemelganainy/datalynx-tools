@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,6 +63,35 @@ export default function Workspace({
   onBack,
   onSelectTool,
 }) {
+  
+  // تحديث عنوان الصفحة والوصف ديناميكياً لمحركات البحث عند التنقل بين الأدوات
+  useEffect(() => {
+    const titles = {
+      'image-compression': 'أداة ضغط الصور أونلاين بجودة عالية - Data Lynx Tools',
+      'format-converter': 'تحويل صيغ الصور وصيغة الأيقونات ICO مجاناً - Data Lynx Tools',
+      'pdf-compression': 'ضغط ملفات PDF وتصغير حجمها للمحامين - Data Lynx Tools',
+      'prosecution-portal': 'بوابة النيابة العامة - ضغط المستندات لأقل من 500KB',
+    };
+
+    const descriptions = {
+      'image-compression': 'قلل حجم صورك بذكاء مع الحفاظ على الدقة العالية محلياً داخل المتصفح وبدون رفعها لسيرفر.',
+      'format-converter': 'حول صورك إلى صيغ متعددة (WebP, PNG, JPEG, ICO) بمرونة كاملة وسرعة فائقة.',
+      'pdf-compression': 'تصغير حجم المستندات القانونية والملفات الممسوحة ضوئياً لتسهيل إرسالها ورفعها.',
+      'prosecution-portal': 'أداة مخصصة لضبط حجم أي مستند تلقائياً ليكون أقل من 500KB لبوابة النيابة العامة.',
+    };
+
+    if (titles[activeTool]) {
+      document.title = titles[activeTool];
+    }
+
+    if (descriptions[activeTool]) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', descriptions[activeTool]);
+      }
+    }
+  }, [activeTool]);
+
   const tools = [
     {
       id: 'image-compression',
