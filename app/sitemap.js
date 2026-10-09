@@ -1,4 +1,5 @@
 import { ARTICLE_SLUGS, ROUTE_MAP } from './lib/i18n/articles';
+import { TOOLS } from './lib/i18n/tools';
 
 /*
  * Sitemap الموقع.
@@ -27,6 +28,21 @@ const STATIC_PAGES = [
   ['privacy', 0.5, 'monthly'],
   ['terms', 0.5, 'monthly'],
 ];
+
+/*
+ * صفحات الأدوات المستقلة.
+ *
+ * كل عنصر هنا هو صفحة HTML حقيقية أُنشئت وقت البناء في العربية
+ * (/tools/<tool>) وفي الإنجليزية (/en/tools/<tool>).
+ *
+ * لا تُدرج حالات الـhash هنا إطلاقًا: /#image-compression ليس
+ * مستندًا مستقلًا ولا يجوز فهرسته كصفحة.
+ */
+const TOOL_PAGES = TOOLS.map((tool) => [
+  `tools/${tool.id}`,
+  tool.priority,
+  tool.changeFrequency,
+]);
 
 /*
  * ملاحظة مهمة:
@@ -61,6 +77,15 @@ function buildEntry(path, priority, changeFrequency, enPath) {
     priority,
     changeFrequency,
   };
+}
+
+/*
+ * نفس المنطق لكن لعنصر إنجليزي مستقل: يضمن أن يكون كل <loc> في
+ * sitemap بلا شرطة نهائية، بنفس الصيغة المستخدمة في canonical كل صفحة.
+ */
+export function sitemapUrlFor(locale, path) {
+  if (!path) return locale === 'en' ? `${SITE_URL}/en` : SITE_URL;
+  return locale === 'en' ? `${SITE_URL}/en/${path}` : `${SITE_URL}/${path}`;
 }
 
 /*
@@ -106,10 +131,12 @@ export function renderSitemap(entries) {
 export function sitemapEntries() {
   const now = new Date();
 
-  const staticEntries = STATIC_PAGES.map(([path, priority, changeFrequency]) => ({
-    ...buildEntry(path, priority, changeFrequency),
-    lastModified: now,
-  }));
+  const staticEntries = [...STATIC_PAGES, ...TOOL_PAGES].map(
+    ([path, priority, changeFrequency]) => ({
+      ...buildEntry(path, priority, changeFrequency),
+      lastModified: now,
+    })
+  );
 
   const articleEntries = ARTICLE_SLUGS.map((slug) => {
     const arabicPath = `articles/${slug}`;
@@ -124,17 +151,46 @@ export function sitemapEntries() {
   return [...staticEntries, ...articleEntries];
 }
 
+/*
+ * كل صفحة حقيقية في اللغتين تُدرج كعنصر مستقل في sitemap.
+ *
+ * السبب: ملف sitemap يجب أن يحتوي على كل صفحة قابلة للفهرسة. لو
+ * أدرجنا العربية فقط مع بدائلها الإنجليزية، فإن الصفحات الإنجليزية
+ * نفسها لا تظهر كـ<loc> مستقل. إدراج اللغتين مع بدائل متبادلة هو
+ * النمط الذي توصي به Google للتناوب ثنائي الاتجاه للـhreflang.
+ *
+ * حالات الواجهة (مثل /#image-compression) لا تُدرج إطلاقًا.
+ */
 export default function sitemap() {
-  return sitemapEntries().map((entry) => ({
-    url: entry.arUrl,
-    lastModified: entry.lastModified,
-    changeFrequency: entry.changeFrequency,
-    priority: entry.priority,
-    alternates: {
-      languages: {
-        'ar-EG': entry.arUrl,
-        en: entry.enUrl,
-      },
-    },
-  }));
+  const entries = [];
+
+  for (const entry of sitemapEntries()) {
+    const languages = {
+      'ar-EG': entry.arUrl,
+      en: entry.enUrl,
+      'x-default': entry.arUrl,
+    };
+
+    entries.push({
+      url: entry.arUrl,
+      lastModified: entry.lastModified,
+      changeFrequency: entry.changeFrequency,
+      priority: entry.priority,
+      alternates: { languages },
+    });
+
+    /*
+     * الصفحة الإنجليزية كعنصر مستقل بنفس البدائل المتبادلة، حتى
+     * تكون إشارة hreflang متطابقة من الاتجاهين.
+     */
+    entries.push({
+      url: entry.enUrl,
+      lastModified: entry.lastModified,
+      changeFrequency: entry.changeFrequency,
+      priority: entry.priority,
+      alternates: { languages },
+    });
+  }
+
+  return entries;
 }

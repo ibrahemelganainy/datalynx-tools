@@ -12,9 +12,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useLocale } from './LocaleProvider';
+import RichText from './RichText';
 
 export default function Hero({ onSelectTool }) {
-  const { t } = useLocale();
+  const { t, lhref } = useLocale();
 
   // إعدادات الحركة لظهور العناصر بسلاسة عند التحميل فقط
   const containerVariants = {
@@ -100,7 +101,7 @@ export default function Hero({ onSelectTool }) {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
-            {t('hero.description')}
+            <RichText text={t('hero.description')} strongClassName="font-bold text-slate-200" />
           </motion.p>
         </motion.div>
 
@@ -112,7 +113,8 @@ export default function Hero({ onSelectTool }) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {tools.map((tool) => (
-            <motion.div
+            <motion.a
+              href={lhref(`tools/${tool.id}`)}
               onClick={() => onSelectTool(tool.id)}
               variants={itemVariants}
               key={tool.id}
@@ -148,7 +150,7 @@ export default function Hero({ onSelectTool }) {
               {tool.highlight && (
                 <div className="absolute top-0 start-0 w-1 h-full bg-gradient-to-b from-amber-400 to-amber-600 rounded-s-2xl"></div>
               )}
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
 

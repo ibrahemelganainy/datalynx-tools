@@ -24,7 +24,7 @@ export default function EnglishTermsPage() {
     >
       <div className="max-w-3xl mx-auto px-6 py-20">
         <Link
-          href="/"
+          href="/en"
           className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors cursor-pointer mb-10"
         >
           → Back to home

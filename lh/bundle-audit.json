@@ -1,0 +1,496 @@
+{
+  "initialLoad": {
+    "homepage (ar)": {
+      "file": "index.html",
+      "initialChunkCount": 13,
+      "initialKB": 869,
+      "chunks": [
+        {
+          "name": "1mh6a-0e61pyc.js",
+          "kb": 224
+        },
+        {
+          "name": "2bmz0osvslsnm.js",
+          "kb": 156
+        },
+        {
+          "name": "3-sa9xo4xxuuh.js",
+          "kb": 121
+        },
+        {
+          "name": "0cz1d0mv5g_q7.js",
+          "kb": 110
+        },
+        {
+          "name": "0ht8f6jtb6fq9.js",
+          "kb": 109
+        },
+        {
+          "name": "0_4k5l7cv0v0g.js",
+          "kb": 40
+        },
+        {
+          "name": "2mmpezlrfmbu5.js",
+          "kb": 34
+        },
+        {
+          "name": "3hh3ruoz6e_4f.js",
+          "kb": 32
+        },
+        {
+          "name": "0h2qsuyze9ds1.js",
+          "kb": 14
+        },
+        {
+          "name": "0urqq51708f1_.js",
+          "kb": 14
+        },
+        {
+          "name": "turbopack-2ut7eawdw0on2.js",
+          "kb": 9
+        },
+        {
+          "name": "310vm2bl3xxpt.js",
+          "kb": 5
+        },
+        {
+          "name": "2avs2e5-mmrul.js",
+          "kb": 1
+        }
+      ]
+    },
+    "homepage (en)": {
+      "file": "en/index.html",
+      "initialChunkCount": 13,
+      "initialKB": 869,
+      "chunks": [
+        {
+          "name": "1mh6a-0e61pyc.js",
+          "kb": 224
+        },
+        {
+          "name": "2bmz0osvslsnm.js",
+          "kb": 156
+        },
+        {
+          "name": "3-sa9xo4xxuuh.js",
+          "kb": 121
+        },
+        {
+          "name": "0cz1d0mv5g_q7.js",
+          "kb": 110
+        },
+        {
+          "name": "0ht8f6jtb6fq9.js",
+          "kb": 109
+        },
+        {
+          "name": "0_4k5l7cv0v0g.js",
+          "kb": 40
+        },
+        {
+          "name": "2mmpezlrfmbu5.js",
+          "kb": 34
+        },
+        {
+          "name": "3hh3ruoz6e_4f.js",
+          "kb": 32
+        },
+        {
+          "name": "0h2qsuyze9ds1.js",
+          "kb": 14
+        },
+        {
+          "name": "0urqq51708f1_.js",
+          "kb": 14
+        },
+        {
+          "name": "turbopack-2ut7eawdw0on2.js",
+          "kb": 9
+        },
+        {
+          "name": "310vm2bl3xxpt.js",
+          "kb": 5
+        },
+        {
+          "name": "2avs2e5-mmrul.js",
+          "kb": 1
+        }
+      ]
+    },
+    "tool page (ar)": {
+      "file": "tools/image-compression/index.html",
+      "initialChunkCount": 12,
+      "initialKB": 864,
+      "chunks": [
+        {
+          "name": "1mh6a-0e61pyc.js",
+          "kb": 224
+        },
+        {
+          "name": "2bmz0osvslsnm.js",
+          "kb": 156
+        },
+        {
+          "name": "3-sa9xo4xxuuh.js",
+          "kb": 121
+        },
+        {
+          "name": "0cz1d0mv5g_q7.js",
+          "kb": 110
+        },
+        {
+          "name": "0ht8f6jtb6fq9.js",
+          "kb": 109
+        },
+        {
+          "name": "0_4k5l7cv0v0g.js",
+          "kb": 40
+        },
+        {
+          "name": "2mmpezlrfmbu5.js",
+          "kb": 34
+        },
+        {
+          "name": "2hfavmf6cihbx.js",
+          "kb": 28
+        },
+        {
+          "name": "0h2qsuyze9ds1.js",
+          "kb": 14
+        },
+        {
+          "name": "0urqq51708f1_.js",
+          "kb": 14
+        },
+        {
+          "name": "turbopack-2ut7eawdw0on2.js",
+          "kb": 9
+        },
+        {
+          "name": "310vm2bl3xxpt.js",
+          "kb": 5
+        }
+      ]
+    },
+    "tool page (en)": {
+      "file": "en/tools/image-compression/index.html",
+      "initialChunkCount": 12,
+      "initialKB": 864,
+      "chunks": [
+        {
+          "name": "1mh6a-0e61pyc.js",
+          "kb": 224
+        },
+        {
+          "name": "2bmz0osvslsnm.js",
+          "kb": 156
+        },
+        {
+          "name": "3-sa9xo4xxuuh.js",
+          "kb": 121
+        },
+        {
+          "name": "0cz1d0mv5g_q7.js",
+          "kb": 110
+        },
+        {
+          "name": "0ht8f6jtb6fq9.js",
+          "kb": 109
+        },
+        {
+          "name": "0_4k5l7cv0v0g.js",
+          "kb": 40
+        },
+        {
+          "name": "2mmpezlrfmbu5.js",
+          "kb": 34
+        },
+        {
+          "name": "2hfavmf6cihbx.js",
+          "kb": 28
+        },
+        {
+          "name": "0h2qsuyze9ds1.js",
+          "kb": 14
+        },
+        {
+          "name": "0urqq51708f1_.js",
+          "kb": 14
+        },
+        {
+          "name": "turbopack-2ut7eawdw0on2.js",
+          "kb": 9
+        },
+        {
+          "name": "310vm2bl3xxpt.js",
+          "kb": 5
+        }
+      ]
+    }
+  },
+  "heavyLibraryChunksOnDisk": {
+    "0b_c451amvsw6.js": {
+      "kb": 20,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "0ht8f6jtb6fq9.js": {
+      "kb": 109,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "0urqq51708f1_.js": {
+      "kb": 14,
+      "contains": [
+        "image compression",
+        "font-awesome"
+      ]
+    },
+    "0_4k5l7cv0v0g.js": {
+      "kb": 40,
+      "contains": [
+        "image compression"
+      ]
+    },
+    "15mgu0hfdcfkn.js": {
+      "kb": 423,
+      "contains": [
+        "pdf.js",
+        "pdf-lib"
+      ]
+    },
+    "22e6aol8wmoz1.js": {
+      "kb": 591,
+      "contains": [
+        "cross-image",
+        "image-in-browser"
+      ]
+    },
+    "2eyee94-rayzo.js": {
+      "kb": 38,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "2hfavmf6cihbx.js": {
+      "kb": 28,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "2s4e2_vbscdrd.js": {
+      "kb": 51,
+      "contains": [
+        "image compression"
+      ]
+    },
+    "3-sa9xo4xxuuh.js": {
+      "kb": 121,
+      "contains": [
+        "framer-motion"
+      ]
+    },
+    "3-tfs4rb0wip0.js": {
+      "kb": 34,
+      "contains": [
+        "image compression",
+        "font-awesome"
+      ]
+    },
+    "331jvq9526966.js": {
+      "kb": 1993,
+      "contains": [
+        "libheif/heic"
+      ]
+    },
+    "3hh3ruoz6e_4f.js": {
+      "kb": 32,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "3pgnp9r352pxa.js": {
+      "kb": 374,
+      "contains": [
+        "pdf.js",
+        "pdf-lib"
+      ]
+    },
+    "3tmo33s62fli0.js": {
+      "kb": 147,
+      "contains": [
+        "jszip"
+      ]
+    },
+    "3y1xxm6j24yzb.js": {
+      "kb": 40,
+      "contains": [
+        "font-awesome"
+      ]
+    },
+    "43pgy8pywiv2t.js": {
+      "kb": 18,
+      "contains": [
+        "image compression",
+        "font-awesome"
+      ]
+    }
+  },
+  "heavyLibrariesInInitialLoad": {
+    "homepage (ar)": [
+      {
+        "chunk": "0ht8f6jtb6fq9.js",
+        "kb": 109,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0urqq51708f1_.js",
+        "kb": 14,
+        "contains": [
+          "image compression",
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0_4k5l7cv0v0g.js",
+        "kb": 40,
+        "contains": [
+          "image compression"
+        ]
+      },
+      {
+        "chunk": "3-sa9xo4xxuuh.js",
+        "kb": 121,
+        "contains": [
+          "framer-motion"
+        ]
+      },
+      {
+        "chunk": "3hh3ruoz6e_4f.js",
+        "kb": 32,
+        "contains": [
+          "font-awesome"
+        ]
+      }
+    ],
+    "homepage (en)": [
+      {
+        "chunk": "0ht8f6jtb6fq9.js",
+        "kb": 109,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0urqq51708f1_.js",
+        "kb": 14,
+        "contains": [
+          "image compression",
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0_4k5l7cv0v0g.js",
+        "kb": 40,
+        "contains": [
+          "image compression"
+        ]
+      },
+      {
+        "chunk": "3-sa9xo4xxuuh.js",
+        "kb": 121,
+        "contains": [
+          "framer-motion"
+        ]
+      },
+      {
+        "chunk": "3hh3ruoz6e_4f.js",
+        "kb": 32,
+        "contains": [
+          "font-awesome"
+        ]
+      }
+    ],
+    "tool page (ar)": [
+      {
+        "chunk": "0ht8f6jtb6fq9.js",
+        "kb": 109,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0urqq51708f1_.js",
+        "kb": 14,
+        "contains": [
+          "image compression",
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0_4k5l7cv0v0g.js",
+        "kb": 40,
+        "contains": [
+          "image compression"
+        ]
+      },
+      {
+        "chunk": "2hfavmf6cihbx.js",
+        "kb": 28,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "3-sa9xo4xxuuh.js",
+        "kb": 121,
+        "contains": [
+          "framer-motion"
+        ]
+      }
+    ],
+    "tool page (en)": [
+      {
+        "chunk": "0ht8f6jtb6fq9.js",
+        "kb": 109,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0urqq51708f1_.js",
+        "kb": 14,
+        "contains": [
+          "image compression",
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "0_4k5l7cv0v0g.js",
+        "kb": 40,
+        "contains": [
+          "image compression"
+        ]
+      },
+      {
+        "chunk": "2hfavmf6cihbx.js",
+        "kb": 28,
+        "contains": [
+          "font-awesome"
+        ]
+      },
+      {
+        "chunk": "3-sa9xo4xxuuh.js",
+        "kb": 121,
+        "contains": [
+          "framer-motion"
+        ]
+      }
+    ]
+  }
+}

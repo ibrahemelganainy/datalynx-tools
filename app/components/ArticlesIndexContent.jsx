@@ -19,28 +19,28 @@ import { useLocale } from './LocaleProvider';
 const categoryLinks = [
   {
     key: 'imageCompression',
-    href: '/#image-compression',
+    to: 'tools/image-compression',
     icon: '01',
     className: 'border-blue-500/20 bg-blue-500/5 hover:border-blue-500/40',
     iconClass: 'bg-blue-500/10 text-blue-400',
   },
   {
     key: 'formatConverter',
-    href: '/#format-converter',
+    to: 'tools/format-converter',
     icon: '02',
     className: 'border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/40',
     iconClass: 'bg-emerald-500/10 text-emerald-400',
   },
   {
     key: 'pdf',
-    href: '/#pdf-compression',
+    to: 'tools/pdf-compression',
     icon: '03',
     className: 'border-rose-500/20 bg-rose-500/5 hover:border-rose-500/40',
     iconClass: 'bg-rose-500/10 text-rose-400',
   },
   {
     key: 'ico',
-    href: '/#format-converter',
+    to: 'tools/format-converter',
     icon: '04',
     className: 'border-violet-500/20 bg-violet-500/5 hover:border-violet-500/40',
     iconClass: 'bg-violet-500/10 text-violet-400',
@@ -65,12 +65,12 @@ const articleIcons = {
 };
 
 export default function ArticlesIndexContent() {
-  const { t } = useLocale();
+  const { t, lhref, dir } = useLocale();
 
   return (
     <div
       className="min-h-screen bg-[#020617] text-slate-100 font-sans"
-      dir="rtl"
+      dir={dir}
     >
       <Navbar />
 
@@ -159,7 +159,7 @@ export default function ArticlesIndexContent() {
           </div>
 
           <Link
-            href="/articles/image-pdf-compression-tools"
+            href={lhref('articles/image-pdf-compression-tools')}
             className="group block relative overflow-hidden rounded-[2rem] border border-datalynx-primary/20 bg-gradient-to-br from-datalynx-primary/10 via-slate-900/80 to-blue-500/5 hover:border-datalynx-primary/40 transition-all duration-500 cursor-pointer"
           >
 
@@ -277,7 +277,7 @@ export default function ArticlesIndexContent() {
 
               <Link
                 key={category.key}
-                href={category.href}
+                href={lhref(category.to)}
                 className={`group p-5 rounded-3xl border transition-all duration-300 hover:-translate-y-1 cursor-pointer ${category.className}`}
               >
 
@@ -349,7 +349,7 @@ export default function ArticlesIndexContent() {
 
               <Link
                 key={article.number}
-                href={`/articles/${article.slug}`}
+                href={lhref(`articles/${article.slug}`)}
                 className="group block p-6 rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-datalynx-primary/30 hover:bg-slate-900/80 transition-all duration-300 cursor-pointer"
               >
 
@@ -440,7 +440,7 @@ export default function ArticlesIndexContent() {
               <div className="mt-7">
 
                 <Link
-                  href="/"
+                  href={lhref('tools/image-compression')}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-datalynx-primary text-white font-black hover:opacity-90 transition-all cursor-pointer"
                 >
 

@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useLocale } from './LocaleProvider';
+import RichText from './RichText';
 
 /*
  * بيانات المقالات: النصوص تأتي من قاموس اللغة، والروابط تبقى ثابتة
@@ -96,16 +97,9 @@ function ClauseRow({ article, index, t, href, articleLabel, readMore }) {
 }
 
 export default function PrivacySection() {
-  const { t, dir } = useLocale();
+  const { t, dir, lhref } = useLocale();
 
   const listRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: listRef,
-    offset: ['start 0.75', 'end 0.6'],
-  });
-
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section
@@ -148,7 +142,7 @@ export default function PrivacySection() {
           </h2>
 
           <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-            {t('knowledgeSection.description')}
+            <RichText text={t('knowledgeSection.description')} strongClassName="font-bold text-white" />
           </p>
         </motion.div>
 
@@ -160,10 +154,9 @@ export default function PrivacySection() {
             aria-hidden="true"
           />
 
-          {/* خط المعرفة الأزرق — يمتلئ مع تقدّم القراءة */}
-          <motion.div
-            style={{ scaleY: lineScale }}
-            className="absolute top-2 bottom-2 start-[17px] w-px bg-datalynx-primary origin-top"
+          {/* خط المعرفة الأزرق — يمتلئ مع تقدّم القسم عبر الشاشة */}
+          <div
+            className="dl-knowledge-line absolute top-2 bottom-2 start-[17px] w-px bg-datalynx-primary"
             aria-hidden="true"
           />
 
@@ -174,7 +167,7 @@ export default function PrivacySection() {
                 article={article}
                 index={i}
                 t={t}
-                href={`/articles/${article.slug}`}
+                href={lhref(`articles/${article.slug}`)}
                 articleLabel={t('knowledgeSection.articleLabel')}
                 readMore={t('knowledgeSection.readMore')}
               />
@@ -201,7 +194,7 @@ export default function PrivacySection() {
           </div>
 
           <Link
-            href="/articles"
+            href={lhref('articles')}
             className="px-8 py-3.5 bg-datalynx-primary hover:bg-blue-600 text-white font-bold rounded-2xl transition-all whitespace-nowrap text-sm md:text-base shrink-0 shadow-[0_0_20px_rgba(59,130,246,0.3)] cursor-pointer"
           >
             {t('knowledgeSection.ctaButton')}

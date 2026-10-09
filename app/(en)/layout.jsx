@@ -38,11 +38,15 @@ export const metadata = {
    *
    * القالب الأصلي يبقى كما هو تمامًا للمسارات العربية، وهذا التغيير
    * يخص مجموعة (en) وحدها.
+   *
+   * ملاحظة: `template: '%s'` يُلغي القالب الموروث لأبناء هذه المجموعة
+   * فقط. أما `default` فيمرّ عبر قالب layout الجذر، لذلك يُكتب هنا
+   * بدون لاحقة العلامة، لأن الجذر يضيفها.
    */
   title: {
     template: '%s',
     default:
-      'Data Lynx Tools - Professional tools to compress images, convert formats and compress PDF files',
+      'Professional tools to compress images, convert formats and compress PDF files',
   },
 };
 

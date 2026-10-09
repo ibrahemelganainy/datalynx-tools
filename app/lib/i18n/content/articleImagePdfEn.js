@@ -21,7 +21,7 @@ export const tocItems = [
 
 export const relatedTools = [
   {
-    href: '/#image-compression',
+    to: 'tools/image-compression',
     title: 'Image compression',
     description:
       'Reduce image size with control over quality, dimensions and the output format.',
@@ -29,7 +29,7 @@ export const relatedTools = [
     iconClass: 'bg-blue-500/10 text-blue-400',
   },
   {
-    href: '/#format-converter',
+    to: 'tools/format-converter',
     title: 'Format conversion',
     description:
       'Convert images between a wide range of formats and build ICO packages.',
@@ -37,7 +37,7 @@ export const relatedTools = [
     iconClass: 'bg-emerald-500/10 text-emerald-400',
   },
   {
-    href: '/#pdf-compression',
+    to: 'tools/pdf-compression',
     title: 'PDF compression',
     description:
       'Reduce the size of PDF files with different modes for text and scanned documents.',
@@ -45,7 +45,7 @@ export const relatedTools = [
     iconClass: 'bg-rose-500/10 text-rose-400',
   },
   {
-    href: '/#prosecution-portal',
+    to: 'tools/prosecution-portal',
     title: 'Prosecution Portal',
     description:
       'Automatically prepare images and PDF files to reach the limit below 500KB.',

@@ -17,6 +17,10 @@ const ROUTES = [
   '/articles/jpg-vs-webp-vs-png-avif',
   '/privacy',
   '/terms',
+  '/tools/image-compression',
+  '/tools/format-converter',
+  '/tools/pdf-compression',
+  '/tools/prosecution-portal',
   '/en',
   '/en/articles',
   '/en/articles/image-pdf-compression-tools',
@@ -24,6 +28,10 @@ const ROUTES = [
   '/en/articles/image-format-comparison',
   '/en/privacy',
   '/en/terms',
+  '/en/tools/image-compression',
+  '/en/tools/format-converter',
+  '/en/tools/pdf-compression',
+  '/en/tools/prosecution-portal',
 ];
 
 function fileFor(route) {

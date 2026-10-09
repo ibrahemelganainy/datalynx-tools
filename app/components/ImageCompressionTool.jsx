@@ -327,7 +327,7 @@ export default function ImageCompressionTool() {
           <div className="w-20 h-20 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-5">
             <FontAwesomeIcon
               icon={faCloudArrowUp}
-              className="text-4xl text-slate-400"
+              className="text-4xl text-blue-400"
             />
           </div>
 
@@ -335,7 +335,7 @@ export default function ImageCompressionTool() {
             {t('tools.common.dropImages')}
           </h3>
 
-          <p className="text-sm text-slate-500 mb-6">
+          <p className="text-sm text-white mb-6">
             {t('tools.imageCompression.formatsHint')}
           </p>
 
@@ -738,9 +738,10 @@ export default function ImageCompressionTool() {
 
       {/* Empty state helper */}
       {!items.length && (
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-600">
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-white">
           <FontAwesomeIcon
             icon={faRotate}
+            className="text-blue-400"
           />
           {t('tools.imageCompression.emptyHelper')}
         </div>

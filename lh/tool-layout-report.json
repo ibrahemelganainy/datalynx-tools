@@ -1,0 +1,417 @@
+{
+  "origin": "http://localhost:4321",
+  "toolPageSectionOrder": {
+    "routesWithProblems": 0,
+    "results": [
+      {
+        "route": "/tools/image-compression",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 973,
+          "knowledgeTop": 1650,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/tools/format-converter",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 954,
+          "knowledgeTop": 1630,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/tools/pdf-compression",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 977,
+          "knowledgeTop": 1654,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/tools/prosecution-portal",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 1165,
+          "knowledgeTop": 1841,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/en/tools/image-compression",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 973,
+          "knowledgeTop": 1678,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/en/tools/format-converter",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 980,
+          "knowledgeTop": 1684,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/en/tools/pdf-compression",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 977,
+          "knowledgeTop": 1682,
+          "ordered": true
+        },
+        "problems": []
+      },
+      {
+        "route": "/en/tools/prosecution-portal",
+        "order": {
+          "seen": [
+            "workspace",
+            "features",
+            "knowledge"
+          ],
+          "hasFooter": true,
+          "hasNavbar": true
+        },
+        "positions": {
+          "workspaceTop": 0,
+          "featuresTop": 1165,
+          "knowledgeTop": 1869,
+          "ordered": true
+        },
+        "problems": []
+      }
+    ]
+  },
+  "responsiveness": {
+    "checked": 20,
+    "horizontalOverflowIssues": [],
+    "navBreakpointIssues": [],
+    "details": [
+      {
+        "viewport": "mobile-320",
+        "width": 320,
+        "route": "/",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.top-0",
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-320",
+        "width": 320,
+        "route": "/tools/image-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-320",
+        "width": 320,
+        "route": "/en",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.top-0",
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-320",
+        "width": 320,
+        "route": "/en/tools/pdf-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "button.flex.items-center",
+          "span.",
+          "button.flex.items-center",
+          "svg.[object.SVGAnimatedString]",
+          "path.[object.SVGAnimatedString]"
+        ]
+      },
+      {
+        "viewport": "mobile-390",
+        "width": 390,
+        "route": "/",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.top-0",
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-390",
+        "width": 390,
+        "route": "/tools/image-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-390",
+        "width": 390,
+        "route": "/en",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.absolute.top-0",
+          "div.absolute.bottom-1/4"
+        ]
+      },
+      {
+        "viewport": "mobile-390",
+        "width": 390,
+        "route": "/en/tools/pdf-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "mobile",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "button.flex.items-center",
+          "span.",
+          "button.flex.items-center",
+          "svg.[object.SVGAnimatedString]",
+          "path.[object.SVGAnimatedString]"
+        ]
+      },
+      {
+        "viewport": "tablet-768",
+        "width": 768,
+        "route": "/",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "tablet-768",
+        "width": 768,
+        "route": "/tools/image-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "tablet-768",
+        "width": 768,
+        "route": "/en",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.hidden.md:flex",
+          "a.px-3.5.py-2",
+          "a.px-6.py-2.5"
+        ]
+      },
+      {
+        "viewport": "tablet-768",
+        "width": 768,
+        "route": "/en/tools/pdf-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.hidden.md:flex",
+          "a.px-3.5.py-2",
+          "a.px-6.py-2.5",
+          "button.flex.items-center",
+          "span."
+        ]
+      },
+      {
+        "viewport": "laptop-1024",
+        "width": 1024,
+        "route": "/",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "laptop-1024",
+        "width": 1024,
+        "route": "/tools/image-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "laptop-1024",
+        "width": 1024,
+        "route": "/en",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.hidden.md:flex",
+          "a.px-6.py-2.5",
+          "div.",
+          "span.block.text-xs",
+          "span.font-bold.text-white"
+        ]
+      },
+      {
+        "viewport": "laptop-1024",
+        "width": 1024,
+        "route": "/en/tools/pdf-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": [
+          "div.hidden.md:flex",
+          "a.px-6.py-2.5",
+          "div.",
+          "span.block.text-xs",
+          "span.font-bold.text-white"
+        ]
+      },
+      {
+        "viewport": "desktop-1440",
+        "width": 1440,
+        "route": "/",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "desktop-1440",
+        "width": 1440,
+        "route": "/tools/image-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "desktop-1440",
+        "width": 1440,
+        "route": "/en",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      },
+      {
+        "viewport": "desktop-1440",
+        "width": 1440,
+        "route": "/en/tools/pdf-compression",
+        "horizontalOverflow": false,
+        "overflowBy": 0,
+        "navMode": "desktop",
+        "navMatchesBreakpoint": true,
+        "sampleOverflowingElements": []
+      }
+    ]
+  }
+}

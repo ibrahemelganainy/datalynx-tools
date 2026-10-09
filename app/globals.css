@@ -35,6 +35,45 @@
   animation: float 4s ease-in-out infinite; 
 }
 
+/*
+ * خط تقدم القراءة في مركز المعرفة.
+ *
+ * كان مُنفّذًا بـuseScroll + useTransform من framer-motion، وهو ما
+ * يسجّل مستمع تمرير وينفّذ قياسات getBoundingClientRect متصلة، فيظهر
+ * جزء كبير من زمن الخيط الرئيسي كـ"Other" في Lighthouse.
+ *
+ * البديل هنا أنيميشن مدفوع بالتمرير من CSS نفسه (animation-timeline:
+ * view())، يُشغّله المتصفح على خيط الرسْم بدون أي JavaScript. النتيجة
+ * البصرية مطابقة: الخط يمتلئ من أعلى إلى أسفل مع تقدّم القسم عبر
+ * الشاشة.
+ *
+ * التدرّج الآمن: داخل @supports، أي متصفح لا يدعم الخاصية يرفض القاعدة
+ * بالكامل ويُبقي الخط ممتدًا بعرضه الطبيعي (1). لا تتكسر الواجهة أبدًا،
+ * ولا يظهر خط فارغ أو مقلوب.
+ */
+@keyframes dl-knowledge-line {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.dl-knowledge-line {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+/*
+ * داخل @supports، أي متصفح لا يدعم الخاصية يرفض القاعدة بالكامل ويبقى
+ * الخط ممتدًا بعرضه الطبيعي (1) كما هو معرّف فوق. لا تتكسر الواجهة.
+ */
+@supports (animation-timeline: view()) {
+  .dl-knowledge-line {
+    animation: dl-knowledge-line linear both;
+    animation-timeline: view();
+    /* يتقدّم امتلاء الخط من دخول القائمة حتى منتصف الشاشة. */
+    animation-range: entry 20% cover 55%;
+  }
+}
+
 html, body {
   height: 100%;
   scroll-behavior: smooth;

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+
+import LocalLink from '../../../components/LocalLink';
 
 export const metadata = {
   title:
@@ -92,7 +92,7 @@ const tocItems = [
 
 const relatedTools = [
   {
-    href: '/#image-compression',
+    to: 'tools/image-compression',
     title: 'ضغط الصور',
     description:
       'تقليل حجم الصور مع التحكم في الجودة والأبعاد وصيغة الإخراج.',
@@ -102,7 +102,7 @@ const relatedTools = [
       'bg-blue-500/10 text-blue-400',
   },
   {
-    href: '/#format-converter',
+    to: 'tools/format-converter',
     title: 'تحويل الصيغ',
     description:
       'تحويل الصور بين مجموعة واسعة من الصيغ وإنشاء حزم ICO.',
@@ -112,7 +112,7 @@ const relatedTools = [
       'bg-emerald-500/10 text-emerald-400',
   },
   {
-    href: '/#pdf-compression',
+    to: 'tools/pdf-compression',
     title: 'ضغط PDF',
     description:
       'تقليل حجم ملفات PDF مع أوضاع مختلفة للمستندات النصية والممسوحة.',
@@ -122,7 +122,7 @@ const relatedTools = [
       'bg-rose-500/10 text-rose-400',
   },
   {
-    href: '/#prosecution-portal',
+    to: 'tools/prosecution-portal',
     title: 'بوابة النيابة العامة',
     description:
       'تجهيز الصور وملفات PDF تلقائيًا للوصول إلى حد أقل من 500KB.',
@@ -318,12 +318,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </nav>
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
-                    <Link
-                      href="/"
+                    <LocalLink
+                      to={''}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-datalynx-primary text-white font-bold hover:opacity-90 transition-all cursor-pointer"
                     >
                       تجربة الأدوات
-                    </Link>
+                    </LocalLink>
                   </div>
 
                 </div>
@@ -467,12 +467,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </div>
 
                   <div className="mt-8">
-                    <Link
-                      href="/#image-compression"
+                    <LocalLink
+                      to={'tools/image-compression'}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-500 text-white font-black hover:bg-blue-400 transition-all cursor-pointer"
                     >
                       تجربة أداة ضغط الصور
-                    </Link>
+                    </LocalLink>
                   </div>
                 </section>
 
@@ -537,12 +537,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </div>
 
                   <div className="mt-8">
-                    <Link
-                      href="/#format-converter"
+                    <LocalLink
+                      to={'tools/format-converter'}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-black hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       تجربة أداة تحويل الصيغ
-                    </Link>
+                    </LocalLink>
                   </div>
                 </section>
 
@@ -693,12 +693,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </div>
 
                   <div className="mt-8">
-                    <Link
-                      href="/#pdf-compression"
+                    <LocalLink
+                      to={'tools/pdf-compression'}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-rose-500 text-white font-black hover:bg-rose-400 transition-all cursor-pointer"
                     >
                       تجربة أداة ضغط PDF
-                    </Link>
+                    </LocalLink>
                   </div>
                 </section>
 
@@ -776,12 +776,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </div>
 
                   <div className="mt-8">
-                    <Link
-                      href="/#prosecution-portal"
+                    <LocalLink
+                      to={'tools/prosecution-portal'}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 text-slate-950 font-black hover:bg-amber-400 transition-all cursor-pointer"
                     >
                       تجربة أداة تجهيز الملفات
-                    </Link>
+                    </LocalLink>
                   </div>
                 </section>
 
@@ -865,12 +865,12 @@ export default function ImagePdfCompressionArticlePage() {
                   </div>
 
                   <div className="mt-7">
-                    <Link
-                      href="/privacy"
+                    <LocalLink
+                      to={'privacy'}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       قراءة سياسة الخصوصية
-                    </Link>
+                    </LocalLink>
                   </div>
                 </section>
 
@@ -963,13 +963,11 @@ export default function ImagePdfCompressionArticlePage() {
 
                     {relatedTools.map(
                       (tool) => (
-                        <Link
+                        <LocalLink
                           key={
                             tool.title
                           }
-                          href={
-                            tool.href
-                          }
+                          to={tool.to}
                           className={`group p-5 rounded-2xl border transition-all cursor-pointer ${tool.className}`}
                         >
 
@@ -991,7 +989,7 @@ export default function ImagePdfCompressionArticlePage() {
                             }
                           </p>
 
-                        </Link>
+                        </LocalLink>
                       )
                     )}
 
@@ -1082,19 +1080,19 @@ export default function ImagePdfCompressionArticlePage() {
 
                   <div className="mt-8 flex flex-col sm:flex-row gap-3">
 
-                    <Link
-                      href="/"
+                    <LocalLink
+                      to={''}
                       className="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-datalynx-primary text-white font-black hover:opacity-90 transition-all cursor-pointer"
                     >
                       فتح Data Lynx Tools
-                    </Link>
+                    </LocalLink>
 
-                    <Link
-                      href="/privacy"
+                    <LocalLink
+                      to={'privacy'}
                       className="sm:w-52 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       سياسة الخصوصية
-                    </Link>
+                    </LocalLink>
 
                   </div>
 

@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+/*
+ * ملاحظة أداء (مثبتة بالقياس):
+ *
+ * كان هذا الملف يستورد Geist و Geist_Mono من next/font/google ويضع
+ * متغيّريهما على <html>. تم التحقق من أن أي عنصر في الموقع لا يستخدم
+ * --font-geist-sans ولا --font-geist-mono ولا font-mono المرتبط بهما:
+ * خط الواجهة الفعلي هو Tajawal عبر --font-sans في globals.css.
+ *
+ * النتيجة كانت تحميل ١٢ ملف woff2 لخط لا يُرسم به أي نص (~١٤٨KB)،
+ * وقد ظهرت فعليًا في تقرير Lighthouse كموردات خطوط غير مستخدمة.
+ *
+ * إزالتها لا تغيّر أي شكل مرئي: Tajawal يبقى كما هو بنفس الأوزان،
+ * و font-mono يبقى على stack Tailwind الافتراضي (var(--font-mono))
+ * لأنه لم يكن مرتبطًا بـ Geist أساسًا.
+ */
 export const metadata: Metadata = {
   title: {
     default: "Data Lynx Tools - أدوات احترافية لضغط الصور، تحويل الصيغ، وملفات PDF",
@@ -68,7 +73,7 @@ export default function RootLayout({
    * `lang="en"` و `dir="ltr"` بدون أي اعتماد على JavaScript.
    */
   return (
-    <html lang="ar" dir="rtl" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="ar" dir="rtl" className="h-full antialiased">
       <head>
         {/*
          * خط Tajawal هو واجهة الموقع الفعلية (انظر --font-sans في

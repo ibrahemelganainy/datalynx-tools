@@ -9,7 +9,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'out');
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(scriptDir, '..', 'out');
 
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -36,6 +37,12 @@ function routeExists(route) {
       : [
           `${clean.replace(/^\//, '')}/index.html`,
           `${clean.replace(/^\//, '')}.html`,
+          /*
+           * Non-HTML public files (favicon.ico, robots.txt, sitemap.xml,
+           * images in public/) are real, servable targets even though
+           * they are not pages.
+           */
+          clean.replace(/^\//, ''),
         ];
 
   return candidates.some((c) => fs.existsSync(path.join(root, c)));
@@ -70,8 +77,15 @@ for (const page of pages) {
       continue;
     }
 
-    const [pathPart, hashPart] = href.split('#');
+    const [pathWithQuery, hashPart] = href.split('#');
     const hash = hashPart ? `#${hashPart}` : '';
+
+    /*
+     * Next.js writes cache-busting query strings on metadata assets
+     * (e.g. /favicon.ico?v=...). The query is not part of the file
+     * path and must not be treated as one.
+     */
+    const pathPart = pathWithQuery.split('?')[0];
 
     // Hash-only link: anchor on the current page.
     if (pathPart === '') {
@@ -119,31 +133,52 @@ const sitemapDuplicates = sitemapRoutes.filter(
 
 // Pages reachable but absent from the sitemap.
 const sitemapSet = new Set(sitemapRoutes);
+
+/* Trailing slashes differ between the export and the sitemap, so both
+ * sides are normalized before the comparison. */
+const normalize = (r) => r.replace(/\/+$/, '') || '/';
+
+const sitemapSetNormalized = new Set([...sitemapSet].map(normalize));
+
 const notInSitemap = pages
   .map((p) => p.route)
-  .filter((r) => r !== '/404.html' && !sitemapSet.has(r));
+  .filter(
+    (r) =>
+      r !== '/404.html' &&
+      r !== '/404/' &&
+      r !== '/_not-found/' &&
+      !sitemapSetNormalized.has(normalize(r))
+  );
 
 const robotsTxt = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
 
-console.log(
-  JSON.stringify(
-    {
-      exportedPages: pages.map((p) => p.route).sort(),
-      totalInternalLinksChecked: pages.length,
-      brokenInternalLinks: broken,
-      sitemapUrlCount: sitemapRoutes.length,
-      sitemapRoutes: [...sitemapRoutes].sort(),
-      sitemapMissingPages: sitemapMissing,
-      sitemapDuplicateEntries: sitemapDuplicates,
-      exportedPagesMissingFromSitemap: notInSitemap,
-      robotsReferencesSitemap: robotsTxt.includes(
-        'Sitemap: https://tools.datalynx.space/sitemap.xml'
-      ),
-      robotsBlocksAnything: /^Disallow:\s*\S/m.test(robotsTxt),
-      hashOnlyLinksFound: hashLinks.map((h) => `${h.page}${h.hash}`),
-      uniqueExternalTargets: [...external].sort(),
-    },
-    null,
-    2
-  )
+const report = {
+  exportedPages: pages.map((p) => p.route).sort(),
+  totalInternalLinksChecked: pages.length,
+  brokenInternalLinks: broken,
+  sitemapUrlCount: sitemapRoutes.length,
+  sitemapRoutes: [...sitemapRoutes].sort(),
+  sitemapMissingPages: sitemapMissing,
+  sitemapDuplicateEntries: sitemapDuplicates,
+  exportedPagesMissingFromSitemap: notInSitemap,
+  robotsReferencesSitemap: robotsTxt.includes(
+    'Sitemap: https://tools.datalynx.space/sitemap.xml'
+  ),
+  robotsBlocksAnything: /^Disallow:\s*\S/m.test(robotsTxt),
+  hashOnlyLinksFound: hashLinks.map((h) => `${h.page}${h.hash}`),
+  uniqueExternalTargets: [...external].sort(),
+};
+
+/*
+ * Written by the script itself so the file is always valid UTF-8 JSON.
+ * (A PowerShell `>` redirect writes UTF-16 and corrupts the file.)
+ */
+const outDir = path.join(scriptDir, '..', 'lh');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+fs.writeFileSync(
+  path.join(outDir, 'links-report.json'),
+  JSON.stringify(report, null, 2),
+  'utf8'
 );
+
+console.log(JSON.stringify(report, null, 2));

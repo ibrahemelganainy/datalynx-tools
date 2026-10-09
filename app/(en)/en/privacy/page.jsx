@@ -178,7 +178,7 @@ export default function EnglishPrivacyPage() {
             <div className="mt-8 text-center">
 
               <Link
-                href="/"
+                href="/en"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
               >
                 Back to Data Lynx Tools

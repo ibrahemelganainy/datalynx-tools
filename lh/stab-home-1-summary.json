@@ -1,0 +1,106 @@
+{
+  "label": "stab-home-1",
+  "formFactor": "desktop",
+  "url": "http://localhost:4321/",
+  "fetchTime": "2026-10-09T19:57:07.249Z",
+  "scores": {
+    "performance": 64,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "FCP": {
+      "value": 1153.5381566936255,
+      "display": "1.2 s"
+    },
+    "LCP": {
+      "value": 1519.4301566936256,
+      "display": "1.5 s"
+    },
+    "SpeedIndex": {
+      "value": 1941.7355745931393,
+      "display": "1.9 s"
+    },
+    "TBT": {
+      "value": 703.4999999999998,
+      "display": "700 ms"
+    },
+    "CLS": {
+      "value": 0.022000007909071348,
+      "display": "0.022"
+    },
+    "TTI": {
+      "value": 2338.6380870520143,
+      "display": "2.3 s"
+    }
+  },
+  "transfer": {
+    "totalBytes": 1017053,
+    "mainThreadMs": 2846.4290000000005,
+    "bootupMs": 369.5529999999996,
+    "renderBlockingMs": 0,
+    "unusedJsBytes": 140
+  },
+  "diagnostics": {
+    "renderBlocking": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/261f5lipb0g7i.css",
+        "totalBytes": 67790,
+        "wastedMs": 146
+      }
+    ],
+    "unusedJs": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "totalBytes": 229156,
+        "wastedBytes": 93903,
+        "wastedPercent": 40.97776187400723
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/2bmz0osvslsnm.js",
+        "totalBytes": 159418,
+        "wastedBytes": 90771,
+        "wastedPercent": 56.938990578228314
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/32yhoy0v60vgk.js",
+        "totalBytes": 124502,
+        "wastedBytes": 73971,
+        "wastedPercent": 59.413503397535784
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/0ht8f6jtb6fq9.js",
+        "totalBytes": 111429,
+        "wastedBytes": 27799,
+        "wastedPercent": 24.947724560033745
+      }
+    ],
+    "longestTasks": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/32yhoy0v60vgk.js",
+        "duration": 483,
+        "startTime": 1296.0880870520143
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/32yhoy0v60vgk.js",
+        "duration": 350.9999999999998,
+        "startTime": 2015.0880870520143
+      },
+      {
+        "url": "http://localhost:4321/",
+        "duration": 348.0000000000001,
+        "startTime": 659.8176174104028
+      },
+      {
+        "url": "http://localhost:4321/",
+        "duration": 263.99999999999994,
+        "startTime": 305.8176174104029
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/turbopack-2ut7eawdw0on2.js",
+        "duration": 90,
+        "startTime": 569.8176174104028
+      }
+    ]
+  }
+}

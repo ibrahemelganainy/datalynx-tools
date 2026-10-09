@@ -40,7 +40,31 @@ const EN_PATH = {
     'articles/image-pdf-compression-tools',
   'articles/compress-image-500kb': 'articles/compress-image-500kb',
   'articles/jpg-vs-webp-vs-png-avif': 'articles/image-format-comparison',
+  'tools/image-compression': 'tools/image-compression',
+  'tools/format-converter': 'tools/format-converter',
+  'tools/pdf-compression': 'tools/pdf-compression',
+  'tools/prosecution-portal': 'tools/prosecution-portal',
 };
+
+/*
+ * The sitemap lists every real page in both languages as its own
+ * <loc>, and each entry needs the full set of hreflang alternates.
+ * Both directions are derived from the same map, so the reciprocal
+ * signal is identical whichever language a crawler starts from.
+ */
+const EN_TO_AR = (() => {
+  const map = {};
+  for (const [arPath, enPath] of Object.entries(EN_PATH)) {
+    map[enPath] = arPath;
+  }
+  return map;
+})();
+
+function urlsFor(arPath, enPath) {
+  const arUrl = arPath ? `${SITE_URL}/${arPath}` : SITE_URL;
+  const enUrl = enPath ? `${SITE_URL}/en/${enPath}` : `${SITE_URL}/en`;
+  return { arUrl, enUrl };
+}
 
 const xml = fs.readFileSync(sitemapFile, 'utf8');
 
@@ -59,16 +83,33 @@ const output = xml.replace(
 
     if (!loc) return block;
 
-    const arPath = loc.replace(SITE_URL, '').replace(/^\/+/, '').replace(/\/+$/, '');
-    const enPath = EN_PATH[arPath];
+    /*
+     * Work out which language this <loc> is, then derive its
+     * counterpart from the same route map the app uses.
+     */
+    const withoutSite = loc.replace(SITE_URL, '').replace(/^\/+/, '').replace(/\/+$/, '');
 
-    if (enPath === undefined) {
+    let arPath;
+    let enPath;
+
+    if (withoutSite === '' || withoutSite === 'en') {
+      arPath = '';
+      enPath = '';
+    } else if (withoutSite.startsWith('en/')) {
+      const enSlug = withoutSite.slice(3);
+      enPath = enSlug;
+      arPath = EN_TO_AR[enSlug];
+    } else {
+      arPath = withoutSite;
+      enPath = EN_PATH[withoutSite];
+    }
+
+    if (arPath === undefined || enPath === undefined) {
       skipped.push(loc);
       return block;
     }
 
-    const arUrl = arPath ? `${SITE_URL}/${arPath}` : SITE_URL;
-    const enUrl = enPath ? `${SITE_URL}/en/${enPath}` : `${SITE_URL}/en`;
+    const { arUrl, enUrl } = urlsFor(arPath, enPath);
 
     const alternates =
       `<xhtml:link rel="alternate" hreflang="ar-EG" href="${arUrl}"/>` +

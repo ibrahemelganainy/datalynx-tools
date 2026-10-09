@@ -1,0 +1,69 @@
+{
+  "origin": "http://localhost:4321",
+  "strongText": {
+    "ar-home": {
+      "literalOccurrences": 0,
+      "samples": [],
+      "strongElements": 3,
+      "strongTexts": [
+        "Data Lynx",
+        "Data Lynx Tools",
+        "Data Lynx Tools"
+      ]
+    },
+    "en-home": {
+      "literalOccurrences": 0,
+      "samples": [],
+      "strongElements": 3,
+      "strongTexts": [
+        "Data Lynx",
+        "Data Lynx Tools",
+        "Data Lynx Tools"
+      ]
+    },
+    "ar-tool": {
+      "literalOccurrences": 0,
+      "samples": [],
+      "strongElements": 2,
+      "strongTexts": [
+        "Data Lynx Tools",
+        "Data Lynx Tools"
+      ]
+    },
+    "en-tool": {
+      "literalOccurrences": 0,
+      "samples": [],
+      "strongElements": 2,
+      "strongTexts": [
+        "Data Lynx Tools",
+        "Data Lynx Tools"
+      ]
+    },
+    "ar-articles": {
+      "literalOccurrences": 0,
+      "samples": [],
+      "strongElements": 1,
+      "strongTexts": [
+        "Data Lynx Tools"
+      ]
+    }
+  },
+  "backButton": {
+    "ar-tool": {
+      "buttonFound": true,
+      "expectedPath": "/",
+      "pathname": "/",
+      "hash": "",
+      "href": "http://localhost:4321/",
+      "ok": true
+    },
+    "en-tool": {
+      "buttonFound": true,
+      "expectedPath": "/en",
+      "pathname": "/en/",
+      "hash": "",
+      "href": "http://localhost:4321/en/",
+      "ok": true
+    }
+  }
+}

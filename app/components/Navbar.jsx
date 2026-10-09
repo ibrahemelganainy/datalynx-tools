@@ -10,10 +10,19 @@ import { usePathname } from 'next/navigation';
 import { useLocale } from './LocaleProvider';
 import { getAlternatePath } from '../lib/i18n/articles';
 
-export default function Navbar({ activeTool = null }) {
-  const { locale, t } = useLocale();
+/*
+ * الأدوات المعروفة. يُستخدم للتحقق من أن الـhash الحالي هو فعلاً
+ * معرّف أداة قبل نقلـه إلى رابط اللغة الأخرى.
+ */
+const TOOL_IDS = [
+  'image-compression',
+  'format-converter',
+  'pdf-compression',
+  'prosecution-portal',
+];
 
-  const pathname = usePathname();
+export default function Navbar({ activeTool = null }) {
+  const { locale, t, lhref } = useLocale();
 
   const [isOpen, setIsOpen] =
     useState(false);
@@ -45,34 +54,38 @@ export default function Navbar({ activeTool = null }) {
   /*
    * روابط الخدمات ومركز المعرفة.
    *
-   * الروابط نسبية بدون بادئة حتى يمكن استخدام نفس النافبار في النسخة
-   * العربية (التي تحتفظ بالروابط الأصلية) وفي النسخة الإنجليزية
-   * تحت /en بدون أي تغيير في السلوك الحالي.
-   */
+   * كل رابط يُبنى من نفس المسار المنشور ثم يمر عبر lhref، الذي
+   * يضيف بادئة /en في النسخة الإنجليزية ويترك الروابط العربية على
+   * جذر الموقع كما هي. بهذه الطريقة تبقى كل الروابط الداخلية داخل
+   * اللغة الحالية بدل العودة إلى العربية.
+   *
+   * روابط الأدوات تستخدم الآن مساراتها الحقيقية (/tools/... أو
+   * /en/tools/...) بدل الـhash، بينما لصفحة الأداة المستقلة يبقى
+   * الـhash القديم مدعومًا كما هو. */
   const navLinks = [
     {
       name: t('nav.home'),
-      href: '/',
+      to: '',
     },
     {
       name: t('nav.imageCompression'),
-      href: '/#image-compression',
+      to: 'tools/image-compression',
     },
     {
       name: t('nav.formatConverter'),
-      href: '/#format-converter',
+      to: 'tools/format-converter',
     },
     {
       name: t('nav.pdfCompression'),
-      href: '/#pdf-compression',
+      to: 'tools/pdf-compression',
     },
     {
       name: t('nav.prosecutionPortal'),
-      href: '/#prosecution-portal',
+      to: 'tools/prosecution-portal',
     },
     {
       name: t('nav.articles'),
-      href: '/articles',
+      to: 'articles',
     },
   ];
 
@@ -95,6 +108,11 @@ export default function Navbar({ activeTool = null }) {
    * نحافظ على الأداة المفتوحة حاليًا في الـhash عبر مزامنة الـhash بعد
    * الترطيب فقط. القيمة الابتدائية الفارغة تعني أن أول HTML المُولَّد
    * (قبل أي JavaScript) يحتوي رابطًا نظيفًا وليس hash عابرًا.
+   *
+   * هذا يخدم الحالة القديمة (/#image-compression) فقط: صفحات الأدوات
+   * المستقلة (/tools/...) تُعرّف الأداة من المسار نفسه، ولا تحتاج إلى
+   * أي hash. لذلك لا نُضيف hash إلى وجهة مبدّل اللغة عندما يكون
+   * المستخدم أصلاً على صفحة أداة مستقلة.
    */
   const [hash, setHash] = useState('');
 
@@ -109,8 +127,33 @@ export default function Navbar({ activeTool = null }) {
       window.removeEventListener('hashchange', syncHash);
   }, []);
 
-  const localeSwitchHref =
-    `${getAlternatePath(pathname, locale)}${hash}`;
+  const pathname = usePathname();
+
+  const onStandaloneToolPage = /\/tools\/[^/]+\/?$/.test(pathname || '');
+
+  /*
+   * الـhash الذي يجب نقله إلى اللغة الأخرى:
+   *
+   * - على صفحة أداة مستقلة: لا شيء، لأن المسار المكافئ يحمل هوية
+   *   الأداة بنفسه.
+   * - على الصفحة الرئيسية: الـhash نفسه إذا كان يشير إلى أداة معروفة
+   *   (مثل #image-compression)، فينتقل المستخدم إلى نفس الأداة في
+   *   اللغة الأخرى بدلًا من العودة إلى الرئيسية.
+   */
+  const carriedHash = onStandaloneToolPage
+    ? ''
+    : TOOL_IDS.some((id) => hash === `#${id}`)
+      ? hash
+      : '';
+
+  const localeSwitchHref = `${getAlternatePath(
+    pathname,
+    locale
+  )}${carriedHash}`;
+
+  const isEnglish = locale === 'en';
+
+  const logoHref = isEnglish ? '/en' : '/';
 
   return (
     <nav
@@ -123,7 +166,11 @@ export default function Navbar({ activeTool = null }) {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
         {/* Logo Section */}
-        <div className="flex items-center gap-3 group cursor-pointer">
+        <a
+          href={logoHref}
+          className="flex items-center gap-3 group cursor-pointer"
+          aria-label="Data Lynx Tools"
+        >
 
           {/* الحاوية الخارجية للشعار */}
           <div
@@ -178,7 +225,7 @@ export default function Navbar({ activeTool = null }) {
 
           </div>
 
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10">
@@ -186,7 +233,7 @@ export default function Navbar({ activeTool = null }) {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={lhref(link.to)}
               className={`text-sm font-bold transition-colors hover:text-datalynx-primary cursor-pointer ${
                 isScrolled
                   ? 'text-slate-600'
@@ -280,7 +327,7 @@ export default function Navbar({ activeTool = null }) {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={lhref(link.to)}
               onClick={() =>
                 setIsOpen(false)
               }

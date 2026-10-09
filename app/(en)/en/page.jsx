@@ -7,8 +7,17 @@ import HomeContent from '../../components/HomeContent';
  * result is affected.
  */
 export const metadata = {
-  title:
-    'Data Lynx Tools - Professional tools to compress images, convert formats and compress PDF files',
+  /*
+   * العنوان هنا هو نفس العنوان الافتراضي في layout المجموعة (en).
+   *
+   * كان مكتوبًا مرة ثانية على مستوى الصفحة، وهذا ما جعل Next.js
+   * يطبّق قالب `%s` الموروث عليه فيظهر العنوان بلاحقة مكررة:
+   *
+   *   "... compress PDF files | Data Lynx Tools | Data Lynx Tools"
+   *
+   * وبما أن الـlayout يعرّف العنوان الافتراضي فعلاً، فإن حذفه من
+   * الصفحة ينتج نفس العنوان الصحيح بدون تكرار.
+   */
   description:
     'A complete platform to compress images, convert image formats (WebP, PNG, JPEG, ICO), compress PDF files and prepare prosecution documents below 500KB in one click, without uploading them to a server.',
   keywords: [

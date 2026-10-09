@@ -30,12 +30,12 @@ function SectionTitle({ children }) {
 }
 
 export default function ImageFormatComparisonContent() {
-  const { t } = useLocale();
+  const { t, lhref, dir } = useLocale();
 
   return (
     <div
       className="min-h-screen bg-[#020617] text-slate-100 font-sans"
-      dir="ltr"
+      dir={dir}
     >
       <Navbar />
 
@@ -123,7 +123,7 @@ export default function ImageFormatComparisonContent() {
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
                     <Link
-                      href="/#format-converter"
+                      href={lhref('tools/format-converter')}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       {p.convertNow}
@@ -357,7 +357,7 @@ export default function ImageFormatComparisonContent() {
 
                   <div className="mt-7">
                     <Link
-                      href="/#format-converter"
+                      href={lhref('tools/format-converter')}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-emerald-500 text-slate-950 font-black hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       {p.ctaButton}

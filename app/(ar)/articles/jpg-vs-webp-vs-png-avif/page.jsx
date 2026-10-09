@@ -1,7 +1,7 @@
-import Link from 'next/link';
-
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+
+import LocalLink from '../../../components/LocalLink';
 
 export const metadata = {
   title:
@@ -284,12 +284,12 @@ export default function ImageFormatsComparisonPage() {
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
 
-                    <Link
-                      href="/#format-converter"
+                    <LocalLink
+                      to={'tools/format-converter'}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       تحويل صورة الآن
-                    </Link>
+                    </LocalLink>
 
                   </div>
 
@@ -724,12 +724,12 @@ export default function ImageFormatsComparisonPage() {
 
                   <div className="mt-7">
 
-                    <Link
-                      href="/#format-converter"
+                    <LocalLink
+                      to={'tools/format-converter'}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-emerald-500 text-slate-950 font-black hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       تجربة محول الصور
-                    </Link>
+                    </LocalLink>
 
                   </div>
 

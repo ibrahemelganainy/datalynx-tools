@@ -17,41 +17,38 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useLocale } from './LocaleProvider';
+import RichText from './RichText';
 
 export default function Footer() {
-  const { t } = useLocale();
+  const { t, lhref } = useLocale();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   /*
-   * روابط الأدوات تبقى hash-only كما هي حاليًا، لكن العنصر الأول في
-   * القائمة يستخدم بادئة اللغة حتى يكون هناك رابط HTML حقيقي من الفوتر
-   * إلى الصفحة الرئيسية في كل لغة (لأغراض الزحف الداخلي).
+   * روابط الأدوات في الفوتر تشير الآن إلى المسارات الحقيقية
+   * (/tools/... أو /en/tools/...) بدل الحالات المعبّرة بالـhash،
+   * مع الاحتفاظ بـlhref حتى تبقى الروابط داخل اللغة الحالية.
    */
   const toolLinks = [
     {
       id: 'image-compression',
-      href: '/#image-compression',
       iconClass: 'text-datalynx-primary',
       highlight: false,
     },
     {
       id: 'format-converter',
-      href: '/#format-converter',
       iconClass: 'text-datalynx-primary',
       highlight: false,
     },
     {
       id: 'pdf-compression',
-      href: '/#pdf-compression',
       iconClass: 'text-datalynx-primary',
       highlight: false,
     },
     {
       id: 'prosecution-portal',
-      href: '/#prosecution-portal',
       iconClass: 'text-amber-400',
       highlight: true,
     },
@@ -116,7 +113,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {toolLinks.map((tool) => (
                 <li key={tool.id}>
-                  <a href={tool.href} className="group flex items-center gap-3 hover:text-white transition-colors">
+                  <a href={lhref(`tools/${tool.id}`)} className="group flex items-center gap-3 hover:text-white transition-colors">
                     <FontAwesomeIcon icon={faCaretLeft} className={`${tool.iconClass} text-xs opacity-0 group-hover:opacity-100 transition-all rtl:rotate-180`} />
                     <div>
                       <span className={`block font-bold ${tool.highlight ? 'text-amber-400' : ''}`}>
@@ -140,13 +137,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               <li>
-                <a href="/privacy" className="group flex items-center gap-2 hover:text-white transition-colors">
+                <a href={lhref('privacy')} className="group flex items-center gap-2 hover:text-white transition-colors">
                   <FontAwesomeIcon icon={faShieldHalved} className="text-emerald-400 text-xs" />
                   <span>{t('footer.privacyLink')}</span>
                 </a>
               </li>
               <li>
-                <a href="/terms" className="group flex items-center gap-2 hover:text-white transition-colors">
+                <a href={lhref('terms')} className="group flex items-center gap-2 hover:text-white transition-colors">
                   <FontAwesomeIcon icon={faFileContract} className="text-slate-400 text-xs" />
                   <span>{t('footer.termsLink')}</span>
                 </a>
@@ -210,7 +207,8 @@ export default function Footer() {
         {/* الجزء السفلي: حقوق الملكية */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm opacity-60 text-center md:text-start">
-            © {new Date().getFullYear()} {t('footer.copyright')}
+            © {new Date().getFullYear()}{' '}
+            <RichText text={t('footer.copyright')} strongClassName="font-bold text-slate-200" />
           </div>
 
           {/* زر العودة للأعلى */}

@@ -37,6 +37,20 @@ export const ROUTE_MAP = {
   'articles/jpg-vs-webp-vs-png-avif': {
     en: 'articles/image-format-comparison',
   },
+
+  /*
+   * صفحات الأدوات المستقلة.
+   *
+   * العربية: /tools/<slug>
+   * الإنجليزية: /en/tools/<slug>
+   *
+   * المسارات الإنجليزية هي نفس السلاق الإنجليزي المستعار في كل مكان
+   * آخر، لذلك تبقى الأسماء موحّدة بين العربية والإنجليزية.
+   */
+  'tools/image-compression': { en: 'tools/image-compression' },
+  'tools/format-converter': { en: 'tools/format-converter' },
+  'tools/pdf-compression': { en: 'tools/pdf-compression' },
+  'tools/prosecution-portal': { en: 'tools/prosecution-portal' },
 };
 
 /*

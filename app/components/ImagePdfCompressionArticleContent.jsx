@@ -51,12 +51,12 @@ const modeTones = {
 };
 
 export default function ImagePdfCompressionArticleContent() {
-  const { t } = useLocale();
+  const { t, lhref, dir } = useLocale();
 
   return (
     <div
       className="min-h-screen bg-[#020617] text-slate-100 font-sans"
-      dir="ltr"
+      dir={dir}
     >
       <Navbar />
 
@@ -155,7 +155,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
                     <Link
-                      href="/"
+                      href={lhref('')}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-datalynx-primary text-white font-bold hover:opacity-90 transition-all cursor-pointer"
                     >
                       {t('articlePage.tryTools')}
@@ -253,7 +253,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-8">
                     <Link
-                      href="/#image-compression"
+                      href={lhref('tools/image-compression')}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-500 text-white font-black hover:bg-blue-400 transition-all cursor-pointer"
                     >
                       Try the image compression tool
@@ -287,7 +287,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-8">
                     <Link
-                      href="/#format-converter"
+                      href={lhref('tools/format-converter')}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-black hover:bg-emerald-400 transition-all cursor-pointer"
                     >
                       Try the format converter
@@ -387,7 +387,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-8">
                     <Link
-                      href="/#pdf-compression"
+                      href={lhref('tools/pdf-compression')}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-rose-500 text-white font-black hover:bg-rose-400 transition-all cursor-pointer"
                     >
                       Try the PDF compression tool
@@ -439,7 +439,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-8">
                     <Link
-                      href="/#prosecution-portal"
+                      href={lhref('tools/prosecution-portal')}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 text-slate-950 font-black hover:bg-amber-400 transition-all cursor-pointer"
                     >
                       Try the file preparation tool
@@ -488,7 +488,7 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-7">
                     <Link
-                      href="/privacy"
+                      href={lhref('privacy')}
                       className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       {t('articlePage.privacyCta')}
@@ -545,7 +545,7 @@ export default function ImagePdfCompressionArticleContent() {
                     {relatedTools.map((tool) => (
                       <Link
                         key={tool.title}
-                        href={tool.href}
+                        href={lhref(tool.to)}
                         className={`group p-5 rounded-2xl border transition-all cursor-pointer ${tool.className}`}
                       >
                         <div
@@ -612,14 +612,14 @@ export default function ImagePdfCompressionArticleContent() {
 
                   <div className="mt-8 flex flex-col sm:flex-row gap-3">
                     <Link
-                      href="/"
+                      href={lhref('')}
                       className="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-datalynx-primary text-white font-black hover:opacity-90 transition-all cursor-pointer"
                     >
                       {p.openTools}
                     </Link>
 
                     <Link
-                      href="/privacy"
+                      href={lhref('privacy')}
                       className="sm:w-52 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       {t('articlePage.privacyCta')}

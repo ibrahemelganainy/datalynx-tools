@@ -1,0 +1,11 @@
+﻿
+> datalynx-site@0.1.0 build
+> next build && node scripts/set-html-lang.mjs && node scripts/set-sitemap-hreflang.mjs
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 334ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 75s
+  Running TypeScript ...
+✓ Finished filesystem cache database compaction in 10.4s

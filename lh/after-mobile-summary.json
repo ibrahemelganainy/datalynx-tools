@@ -1,0 +1,106 @@
+{
+  "label": "after-mobile",
+  "formFactor": "mobile",
+  "url": "http://localhost:4321/",
+  "fetchTime": "2026-10-09T16:21:33.865Z",
+  "scores": {
+    "performance": 54,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "FCP": {
+      "value": 1838.766230254017,
+      "display": "1.8 s"
+    },
+    "LCP": {
+      "value": 7038.514172690511,
+      "display": "7.0 s"
+    },
+    "SpeedIndex": {
+      "value": 3756.9163978804854,
+      "display": "3.8 s"
+    },
+    "TBT": {
+      "value": 832,
+      "display": "830 ms"
+    },
+    "CLS": {
+      "value": 0.00011467001173231336,
+      "display": "0"
+    },
+    "TTI": {
+      "value": 7884.514172690511,
+      "display": "7.9 s"
+    }
+  },
+  "transfer": {
+    "totalBytes": 1073844,
+    "mainThreadMs": 6720.059999999968,
+    "bootupMs": 1642.86399999999,
+    "renderBlockingMs": 0,
+    "unusedJsBytes": 1500
+  },
+  "diagnostics": {
+    "renderBlocking": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/16sme3_ld_smw.css",
+        "totalBytes": 71528,
+        "wastedMs": 764
+      }
+    ],
+    "unusedJs": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "totalBytes": 229156,
+        "wastedBytes": 93903,
+        "wastedPercent": 40.97776187400723
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/2_4nww4pyj1_y.js",
+        "totalBytes": 154930,
+        "wastedBytes": 87905,
+        "wastedPercent": 56.73852707674434
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/32yhoy0v60vgk.js",
+        "totalBytes": 124502,
+        "wastedBytes": 73953,
+        "wastedPercent": 59.39904579846107
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/0ht8f6jtb6fq9.js",
+        "totalBytes": 111429,
+        "wastedBytes": 27799,
+        "wastedPercent": 24.947724560033745
+      }
+    ],
+    "longestTasks": [
+      {
+        "url": "http://localhost:4321/",
+        "duration": 669,
+        "startTime": 1033.8380575635042
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/turbopack-2th6dz5z7rur4.js",
+        "duration": 326,
+        "startTime": 2591.5141726905126
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "duration": 188,
+        "startTime": 7269.514172690511
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "duration": 183,
+        "startTime": 6994.514172690511
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "duration": 136,
+        "startTime": 7982.514172690511
+      }
+    ]
+  }
+}

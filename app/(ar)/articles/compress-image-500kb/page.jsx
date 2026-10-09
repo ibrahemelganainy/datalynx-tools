@@ -1,7 +1,7 @@
-import Link from 'next/link';
-
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+
+import LocalLink from '../../../components/LocalLink';
 
 export const metadata = {
   title:
@@ -228,12 +228,12 @@ export default function CompressImage500KBPage() {
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
 
-                    <Link
-                      href="/#image-compression"
+                    <LocalLink
+                      to={'tools/image-compression'}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-blue-500 text-white font-bold hover:bg-blue-400 transition-all cursor-pointer"
                     >
                       ضغط صورة الآن
-                    </Link>
+                    </LocalLink>
 
                   </div>
 
@@ -539,12 +539,12 @@ export default function CompressImage500KBPage() {
 
                   <div className="mt-8">
 
-                    <Link
-                      href="/#prosecution-portal"
+                    <LocalLink
+                      to={'tools/prosecution-portal'}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-amber-500 text-slate-950 font-black hover:bg-amber-400 transition-all cursor-pointer"
                     >
                       تجهيز صورة لأقل من 500KB
-                    </Link>
+                    </LocalLink>
 
                   </div>
 
@@ -654,19 +654,19 @@ export default function CompressImage500KBPage() {
 
                   <div className="mt-7 flex flex-col sm:flex-row gap-3">
 
-                    <Link
-                      href="/#image-compression"
+                    <LocalLink
+                      to={'tools/image-compression'}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-datalynx-primary text-white font-black hover:opacity-90 transition-all cursor-pointer"
                     >
                       ضغط الصور
-                    </Link>
+                    </LocalLink>
 
-                    <Link
-                      href="/articles/image-pdf-compression-tools"
+                    <LocalLink
+                      to={'articles/image-pdf-compression-tools'}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       قراءة الدليل الشامل
-                    </Link>
+                    </LocalLink>
 
                   </div>
 

@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+# العيّنة المحلية لأدوات قياس الأداء والتحقق البصري Lighthouse/Playwright)
+# تُثبّت بـnpm install داخل هذا المجلد حتى تبقى node_modules و package.json
+# الخاصة بالمشروع دون أي تعديل.
+/.qatools/
+
 # next.js
 /.next/
 /out/

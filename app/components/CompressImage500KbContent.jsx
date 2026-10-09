@@ -29,12 +29,12 @@ function SectionTitle({ children }) {
 }
 
 export default function CompressImage500KbContent() {
-  const { t } = useLocale();
+  const { t, lhref, dir } = useLocale();
 
   return (
     <div
       className="min-h-screen bg-[#020617] text-slate-100 font-sans"
-      dir="ltr"
+      dir={dir}
     >
       <Navbar />
 
@@ -125,7 +125,7 @@ export default function CompressImage500KbContent() {
 
                   <div className="mt-6 pt-5 border-t border-slate-800">
                     <Link
-                      href="/#image-compression"
+                      href={lhref('tools/image-compression')}
                       className="block w-full text-center px-4 py-3 rounded-xl bg-blue-500 text-white font-bold hover:bg-blue-400 transition-all cursor-pointer"
                     >
                       {p.compressNow}
@@ -276,7 +276,7 @@ export default function CompressImage500KbContent() {
 
                   <div className="mt-8">
                     <Link
-                      href="/#prosecution-portal"
+                      href={lhref('tools/prosecution-portal')}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-amber-500 text-slate-950 font-black hover:bg-amber-400 transition-all cursor-pointer"
                     >
                       {p.toolCta}
@@ -349,14 +349,14 @@ export default function CompressImage500KbContent() {
 
                   <div className="mt-7 flex flex-col sm:flex-row gap-3">
                     <Link
-                      href="/#image-compression"
+                      href={lhref('tools/image-compression')}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-datalynx-primary text-white font-black hover:opacity-90 transition-all cursor-pointer"
                     >
                       {p.ctaPrimary}
                     </Link>
 
                     <Link
-                      href="/articles/image-pdf-compression-tools"
+                      href={lhref('articles/image-pdf-compression-tools')}
                       className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold hover:bg-slate-700 transition-all cursor-pointer"
                     >
                       {p.ctaSecondary}

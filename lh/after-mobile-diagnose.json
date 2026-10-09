@@ -1,0 +1,165 @@
+{
+  "file": "lh/after-mobile.json",
+  "formFactor": "mobile",
+  "score": 54,
+  "metrics": {
+    "first-contentful-paint": "1.8 s",
+    "largest-contentful-paint": "7.0 s",
+    "speed-index": "3.8 s",
+    "total-blocking-time": "830 ms",
+    "cumulative-layout-shift": "0",
+    "interactive": "7.9 s"
+  },
+  "bootupByUrl": [
+    {
+      "url": "",
+      "total": 2947.424,
+      "script": 68.244
+    },
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "total": 2171.387999999989,
+      "script": 1027.4959999999899
+    },
+    {
+      "url": "Unattributable",
+      "total": 598.0720000000011,
+      "script": 10.991999999999999
+    },
+    {
+      "url": "32yhoy0v60vgk.js",
+      "total": 541.9920000000002,
+      "script": 137.24400000000014
+    },
+    {
+      "url": "turbopack-2th6dz5z7rur4.js",
+      "total": 325.6280000000001,
+      "script": 322.6800000000001
+    }
+  ],
+  "mainThreadByCategory": [
+    {
+      "group": "Style & Layout",
+      "ms": 2531
+    },
+    {
+      "group": "Other",
+      "ms": 2095
+    },
+    {
+      "group": "Script Evaluation",
+      "ms": 1583
+    },
+    {
+      "group": "Rendering",
+      "ms": 283
+    },
+    {
+      "group": "Script Parsing & Compilation",
+      "ms": 167
+    },
+    {
+      "group": "Parse HTML & CSS",
+      "ms": 50
+    },
+    {
+      "group": "Garbage Collection",
+      "ms": 11
+    }
+  ],
+  "longestTasks": [
+    {
+      "url": "",
+      "ms": 669
+    },
+    {
+      "url": "turbopack-2th6dz5z7rur4.js",
+      "ms": 326
+    },
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "ms": 188
+    },
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "ms": 183
+    },
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "ms": 136
+    },
+    {
+      "url": "32yhoy0v60vgk.js",
+      "ms": 126
+    },
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "ms": 119
+    },
+    {
+      "url": "Unattributable",
+      "ms": 116
+    }
+  ],
+  "unusedJs": [
+    {
+      "url": "1mh6a-0e61pyc.js",
+      "totalKB": 224,
+      "wastedKB": 92
+    },
+    {
+      "url": "2_4nww4pyj1_y.js",
+      "totalKB": 151,
+      "wastedKB": 86
+    },
+    {
+      "url": "32yhoy0v60vgk.js",
+      "totalKB": 122,
+      "wastedKB": 72
+    },
+    {
+      "url": "0ht8f6jtb6fq9.js",
+      "totalKB": 109,
+      "wastedKB": 27
+    }
+  ],
+  "renderBlocking": [
+    {
+      "url": "http://localhost:4321/_next/static/chunks/16sme3_ld_smw.css",
+      "kb": 70,
+      "wastedMs": 764
+    }
+  ],
+  "networkChain": [
+    {
+      "url": "",
+      "kb": 59,
+      "ms": 12
+    },
+    {
+      "url": "797e433ab948586e-s.p.0r6juujl39pe6.woff2",
+      "kb": 23,
+      "ms": 17
+    },
+    {
+      "url": "caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2",
+      "kb": 29,
+      "ms": 29
+    },
+    {
+      "url": "16sme3_ld_smw.css",
+      "kb": 70,
+      "ms": 36
+    },
+    {
+      "url": "3mc6dra1m0098.js",
+      "kb": 13,
+      "ms": 28
+    },
+    {
+      "url": "11jq0c2_zavac.js",
+      "kb": 31,
+      "ms": 27
+    }
+  ]
+}

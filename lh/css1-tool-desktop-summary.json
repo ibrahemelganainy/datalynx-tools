@@ -1,0 +1,107 @@
+{
+  "label": "css1-tool-desktop",
+  "formFactor": "desktop",
+  "url": "http://localhost:4321/tools/image-compression/",
+  "fetchTime": "2026-10-09T20:08:14.472Z",
+  "scores": {
+    "performance": 89,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "FCP": {
+      "value": 649.1465278308043,
+      "display": "0.6 s"
+    },
+    "LCP": {
+      "value": 1893.0412708731033,
+      "display": "1.9 s"
+    },
+    "SpeedIndex": {
+      "value": 1243.379713782578,
+      "display": "1.2 s"
+    },
+    "TBT": {
+      "value": 119.50000000000045,
+      "display": "120 ms"
+    },
+    "CLS": {
+      "value": 0.035138500150570816,
+      "display": "0.035"
+    },
+    "TTI": {
+      "value": 2044.3912708731036,
+      "display": "2.0 s"
+    }
+  },
+  "transfer": {
+    "totalBytes": 1280695,
+    "mainThreadMs": 1601.999999999998,
+    "bootupMs": 514.6149999999983,
+    "renderBlockingMs": 0,
+    "unusedJsBytes": 440
+  },
+  "diagnostics": {
+    "renderBlocking": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/41aboye7rb-i4.css",
+        "totalBytes": 68373,
+        "wastedMs": 139
+      }
+    ],
+    "unusedJs": [
+      {
+        "url": "http://localhost:4321/_next/static/chunks/3tmo33s62fli0.js",
+        "totalBytes": 150339,
+        "wastedBytes": 109644,
+        "wastedPercent": 72.9311755432722
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/2bmz0osvslsnm.js",
+        "totalBytes": 159418,
+        "wastedBytes": 89752,
+        "wastedPercent": 56.299790487899735
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "totalBytes": 229156,
+        "wastedBytes": 78978,
+        "wastedPercent": 34.46473144931837
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/3-sa9xo4xxuuh.js",
+        "totalBytes": 123581,
+        "wastedBytes": 72216,
+        "wastedPercent": 58.43616737200702
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/2s4e2_vbscdrd.js",
+        "totalBytes": 51720,
+        "wastedBytes": 45192,
+        "wastedPercent": 87.37819025522042
+      }
+    ],
+    "longestTasks": [
+      {
+        "url": "http://localhost:4321/tools/image-compression/",
+        "duration": 285.9999999999999,
+        "startTime": 327.01375695770105
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/1mh6a-0e61pyc.js",
+        "duration": 139.00000000000023,
+        "startTime": 1294.0275139154019
+      },
+      {
+        "url": "http://localhost:4321/_next/static/chunks/3tmo33s62fli0.js",
+        "duration": 99,
+        "startTime": 1962.0412708731033
+      },
+      {
+        "url": "Unattributable",
+        "duration": 56,
+        "startTime": 259.01375695770105
+      }
+    ]
+  }
+}
