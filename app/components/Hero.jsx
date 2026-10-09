@@ -11,7 +11,11 @@ import {
   faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useLocale } from './LocaleProvider';
+
 export default function Hero({ onSelectTool }) {
+  const { t } = useLocale();
+
   // إعدادات الحركة لظهور العناصر بسلاسة عند التحميل فقط
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -30,32 +34,32 @@ export default function Hero({ onSelectTool }) {
   const tools = [
     {
       id: 'image-compression',
-      title: 'ضغط الصور',
-      desc: 'تقليل حجم الصور بذكاء مع الحفاظ على الدقة العالية، لتوفير المساحة وتسريع الرفع.',
+      title: t('hero.tools.image-compression.title'),
+      desc: t('hero.tools.image-compression.desc'),
       icon: faCompress,
       iconColor: 'text-blue-400',
       iconBg: 'bg-blue-400/10',
     },
     {
       id: 'format-converter',
-      title: 'تحويل الصيغ',
-      desc: 'تحويل الصور بين صيغ WebP, JPEG, PNG بمرونة كاملة وبدون فقدان للجودة.',
+      title: t('hero.tools.format-converter.title'),
+      desc: t('hero.tools.format-converter.desc'),
       icon: faImages,
       iconColor: 'text-emerald-400',
       iconBg: 'bg-emerald-400/10',
     },
     {
       id: 'pdf-compression',
-      title: 'ضغط ملفات PDF',
-      desc: 'تصغير حجم المستندات القانونية والملفات الممسوحة ضوئياً لتسهيل إرسالها.',
+      title: t('hero.tools.pdf-compression.title'),
+      desc: t('hero.tools.pdf-compression.desc'),
       icon: faFilePdf,
       iconColor: 'text-rose-400',
       iconBg: 'bg-rose-400/10',
     },
     {
       id: 'prosecution-portal',
-      title: 'بوابة النيابة العامة',
-      desc: 'أداة مخصصة لضبط حجم أي مستند تلقائياً ليكون أقل من 500KB بضغطة زر واحدة.',
+      title: t('hero.tools.prosecution-portal.title'),
+      desc: t('hero.tools.prosecution-portal.desc'),
       icon: faScaleBalanced,
       iconColor: 'text-amber-400',
       iconBg: 'bg-amber-400/10',
@@ -65,7 +69,7 @@ export default function Hero({ onSelectTool }) {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#020617] pt-32 pb-20">
-      
+
       {/* خلفية احترافية (إضاءات هادئة وشبكة) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-20"></div>
@@ -73,7 +77,7 @@ export default function Hero({ onSelectTool }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        
+
         {/* القسم العلوي: النصوص (Hero Text) */}
         <motion.div
           variants={containerVariants}
@@ -84,24 +88,24 @@ export default function Hero({ onSelectTool }) {
           <motion.div variants={itemVariants} className="mb-6 flex justify-center">
             <span className="px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 text-slate-300 text-sm font-bold flex items-center gap-2 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              معالجة آمنة 100% داخل متصفحك
+              {t('hero.badge')}
             </span>
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight md:leading-tight mb-6">
-            أدوات احترافية لضغط <br />
+            {t('hero.titleLine1')} <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-datalynx-primary">
-              الصور وملفات PDF
+              {t('hero.titleLine2')}
             </span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
-            منصة متكاملة من <strong>Data Lynx</strong> تتيح لك تصغير حجم ملفاتك وتحويل صيغها بسرعة فائقة. تتم كافة العمليات محلياً على جهازك لضمان أقصى درجات الخصوصية والسرية لمستنداتك.
+            {t('hero.description')}
           </motion.p>
         </motion.div>
 
         {/* القسم السفلي: كروت الخدمات (Enterprise Cards Grid) */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -112,9 +116,9 @@ export default function Hero({ onSelectTool }) {
               onClick={() => onSelectTool(tool.id)}
               variants={itemVariants}
               key={tool.id}
-              className={`group relative flex flex-col p-6 rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden text-right
-                ${tool.highlight 
-                  ? 'bg-slate-800/80 border-amber-500/30 hover:border-amber-400/60 shadow-[0_0_15px_rgba(251,191,36,0.05)] hover:shadow-[0_0_25px_rgba(251,191,36,0.15)]' 
+              className={`group relative flex flex-col p-6 rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden text-start
+                ${tool.highlight
+                  ? 'bg-slate-800/80 border-amber-500/30 hover:border-amber-400/60 shadow-[0_0_15px_rgba(251,191,36,0.05)] hover:shadow-[0_0_25px_rgba(251,191,36,0.15)]'
                   : 'bg-slate-800/40 border-slate-700 hover:bg-slate-800/60 hover:border-slate-600 hover:shadow-xl'
                 } hover:-translate-y-1 backdrop-blur-sm`}
             >
@@ -136,13 +140,13 @@ export default function Hero({ onSelectTool }) {
 
               {/* رابط/سهم في أسفل الكارت */}
               <div className={`mt-6 flex items-center gap-2 text-sm font-bold transition-colors ${tool.highlight ? 'text-amber-400' : 'text-blue-400 opacity-0 group-hover:opacity-100'}`}>
-                <span>ابدأ الآن</span>
-                <FontAwesomeIcon icon={faArrowLeft} className="text-xs transform group-hover:-translate-x-1 transition-transform" />
+                <span>{t('hero.startNow')}</span>
+                <FontAwesomeIcon icon={faArrowLeft} className="text-xs transform group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
               </div>
-              
+
               {/* شريط تمييز جانبي لكارت النيابة */}
               {tool.highlight && (
-                <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-amber-400 to-amber-600 rounded-r-2xl"></div>
+                <div className="absolute top-0 start-0 w-1 h-full bg-gradient-to-b from-amber-400 to-amber-600 rounded-s-2xl"></div>
               )}
             </motion.div>
           ))}

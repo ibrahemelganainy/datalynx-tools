@@ -42,6 +42,8 @@ import {
   calculateSavings,
 } from '../lib/image/imageUtils';
 
+import { useLocale } from './LocaleProvider';
+
 const ACCEPT =
   'image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.tif,.tiff,.avif,.heic,.heif,.tga,.dng,.psd,.pcx,.qoi,.ppm,.pgm,.pbm,.pam,.pdf,application/pdf';
 
@@ -113,6 +115,8 @@ function createItem(file) {
 }
 
 export default function ProsecutionTool() {
+  const { t } = useLocale();
+
   const fileInputRef =
     useRef(null);
 
@@ -305,7 +309,8 @@ export default function ProsecutionTool() {
                 result.achieved
                   ? null
                   : getProsecutionResultMessage(
-                      result
+                      result,
+                      t
                     ),
             }
           );
@@ -324,7 +329,7 @@ export default function ProsecutionTool() {
               result: null,
               error:
                 error?.message ||
-                'تعذر تجهيز الملف. تأكد من أن الملف سليم وغير محمي.',
+                t('tools.prosecution.error'),
             }
           );
         }
@@ -442,14 +447,11 @@ export default function ProsecutionTool() {
         </div>
 
         <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-          تجهيز ملفات بوابة النيابة العامة
+          {t('tools.prosecution.title')}
         </h2>
 
         <p className="text-white max-w-2xl mx-auto leading-relaxed">
-          ارفع الصورة أو ملف PDF، وسيتولى
-          النظام تلقائيًا ضغطه وتجهيزه ليكون
-          أقل من 500KB دون الحاجة إلى ضبط أي
-          إعدادات.
+          {t('tools.prosecution.description')}
         </p>
 
       </div>
@@ -472,14 +474,11 @@ export default function ProsecutionTool() {
           <div>
 
             <h3 className="text-white font-bold mb-1">
-              معالجة محلية بالكامل
+              {t('tools.prosecution.noticeTitle')}
             </h3>
 
             <p className="text-sm text-white leading-relaxed">
-              ملفاتك لا يتم رفعها إلى خوادم Data
-              Lynx. تتم المعالجة داخل متصفحك،
-              ثم يتم إنشاء الملف النهائي على
-              جهازك.
+              {t('tools.prosecution.noticeDescription')}
             </p>
 
           </div>
@@ -540,13 +539,11 @@ export default function ProsecutionTool() {
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            اسحب الملفات وأفلتها هنا
+            {t('tools.common.dropFiles')}
           </h3>
 
           <p className="text-sm text-white mb-6 max-w-2xl leading-relaxed">
-            JPG · PNG · WebP · GIF · BMP · TIFF ·
-            AVIF · HEIC · وغيرها، بالإضافة إلى
-            ملفات PDF
+            {t('tools.prosecution.formatsHint')}
           </p>
 
           <button
@@ -558,7 +555,7 @@ export default function ProsecutionTool() {
             }}
             className="px-7 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm transition-all cursor-pointer"
           >
-            اختيار الملفات
+            {t('tools.common.selectFiles')}
           </button>
 
         </div>
@@ -570,11 +567,11 @@ export default function ProsecutionTool() {
       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
 
         <div className="px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-bold">
-          الحد المطلوب: أقل من 500KB
+          {t('tools.prosecution.requirementBadge')}
         </div>
 
         <div className="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-white text-sm">
-          الهدف الداخلي: 480KB
+          {t('tools.prosecution.targetBadge')}
         </div>
 
       </div>
@@ -604,13 +601,11 @@ export default function ProsecutionTool() {
                 <div>
 
                   <h3 className="text-lg font-bold text-white">
-                    الملفات المحددة
+                    {t('tools.prosecution.selectedFiles')}
                   </h3>
 
                   <p className="text-sm text-white mt-1">
-                    سيعمل المحرك تلقائيًا على كل
-                    ملف حتى الوصول إلى النتيجة
-                    المناسبة.
+                    {t('tools.prosecution.selectedFilesHint')}
                   </p>
 
                 </div>
@@ -632,7 +627,7 @@ export default function ProsecutionTool() {
                     }
                   />
 
-                  مسح الكل
+                  {t('tools.common.clearAll')}
 
                 </button>
 
@@ -660,7 +655,7 @@ export default function ProsecutionTool() {
                       className="animate-spin"
                     />
 
-                    جاري تجهيز الملفات...
+                    {t('tools.prosecution.processing')}
                   </>
                 ) : (
                   <>
@@ -670,7 +665,7 @@ export default function ProsecutionTool() {
                       }
                     />
 
-                    تجهيز الملفات لأقل من 500KB
+                    {t('tools.prosecution.start')}
                   </>
                 )}
 
@@ -683,13 +678,13 @@ export default function ProsecutionTool() {
                   <div className="flex items-center justify-between text-sm mb-2">
 
                     <span className="text-white">
-                      معالجة الملف{' '}
+                      {t('tools.common.processingFile')}{' '}
                       {Math.min(
                         processingIndex +
                           1,
                         items.length
                       )}{' '}
-                      من{' '}
+                      {t('tools.common.of')}{' '}
                       {
                         items.length
                       }
@@ -717,8 +712,7 @@ export default function ProsecutionTool() {
                   </div>
 
                   <p className="text-sm text-white mt-2">
-                    قد تتم عدة محاولات تلقائية
-                    للوصول إلى الحجم المطلوب.
+                    {t('tools.prosecution.overallHint')}
                   </p>
 
                 </div>
@@ -816,7 +810,7 @@ export default function ProsecutionTool() {
                               </h4>
 
                               <p className="text-sm text-white mt-1">
-                                الحجم الأصلي:{' '}
+                                {t('tools.common.originalSize')}{' '}
                                 <span className="font-bold text-white">
                                   {formatFileSize(
                                     item
@@ -836,7 +830,7 @@ export default function ProsecutionTool() {
                                     item.id
                                   )
                                 }
-                                aria-label="حذف الملف"
+                                aria-label={t('tools.common.removeFile')}
                                 className="w-8 h-8 shrink-0 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
                               >
                                 <FontAwesomeIcon
@@ -865,7 +859,7 @@ export default function ProsecutionTool() {
                                     className="animate-spin"
                                   />
 
-                                  جاري الضغط تلقائيًا...
+                                  {t('tools.prosecution.itemProcessing')}
                                 </span>
 
                                 <span className="text-sm text-white font-bold">
@@ -895,12 +889,12 @@ export default function ProsecutionTool() {
                                   .pageTotal >
                                   0 && (
                                   <p className="text-sm text-white mt-2">
-                                    معالجة الصفحة{' '}
+                                    {t('tools.prosecution.processingPage')}{' '}
                                     {
                                       item
                                         .pageCurrent
                                     }{' '}
-                                    من{' '}
+                                    {t('tools.common.of')}{' '}
                                     {
                                       item
                                         .pageTotal
@@ -935,12 +929,12 @@ export default function ProsecutionTool() {
                                     <div>
 
                                       <div className="font-black text-emerald-400">
-                                        جاهز للرفع
+                                        {t('tools.prosecution.ready')}
                                       </div>
 
                                       <div className="text-sm text-white mt-1">
 
-                                        الحجم الجديد:{' '}
+                                        {t('tools.prosecution.newSize')}{' '}
 
                                         <span className="font-bold text-white">
                                           {
@@ -954,7 +948,7 @@ export default function ProsecutionTool() {
                                           |
                                         </span>
 
-                                        توفير{' '}
+                                        {t('tools.prosecution.saved')}{' '}
 
                                         {
                                           savings.toFixed(
@@ -972,13 +966,13 @@ export default function ProsecutionTool() {
                                   <div className="flex flex-wrap gap-2 lg:mr-auto">
 
                                     <span className="px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400">
-                                      أقل من 500KB
+                                      {t('tools.prosecution.under500')}
                                     </span>
 
                                     {result
                                       .unchanged && (
                                       <span className="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-bold text-white">
-                                        بدون إعادة ضغط
+                                        {t('tools.prosecution.unchanged')}
                                       </span>
                                     )}
 
@@ -986,7 +980,7 @@ export default function ProsecutionTool() {
                                       !result
                                         .preservesText && (
                                         <span className="px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs font-bold text-amber-400">
-                                          صفحات كصور
+                                          {t('tools.prosecution.pagesAsImages')}
                                         </span>
                                       )}
 
@@ -1010,7 +1004,7 @@ export default function ProsecutionTool() {
                                     }
                                   />
 
-                                  تحميل الملف الجاهز
+                                  {t('tools.prosecution.downloadReady')}
 
                                 </button>
 
@@ -1019,7 +1013,8 @@ export default function ProsecutionTool() {
                               <p className="text-sm text-white mt-3">
                                 {
                                   getProsecutionResultMessage(
-                                    result
+                                    result,
+                                    t
                                   )
                                 }
                               </p>
@@ -1049,13 +1044,11 @@ export default function ProsecutionTool() {
                                   <div>
 
                                     <h4 className="font-black text-rose-400">
-                                      تعذر الوصول إلى
-                                      الحجم المطلوب
+                                      {t('tools.prosecution.failedTitle')}
                                     </h4>
 
                                     <p className="text-sm text-white mt-1 leading-relaxed">
-                                      أصغر نتيجة تم الوصول
-                                      إليها:
+                                      {t('tools.prosecution.failedSmallest')}
                                       {' '}
                                       <span className="font-bold">
                                         {
@@ -1064,9 +1057,7 @@ export default function ProsecutionTool() {
                                           )
                                         }
                                       </span>
-                                      . الضغط أكثر من ذلك
-                                      قد يؤثر بشدة على وضوح
-                                      المستند.
+                                      {t('tools.prosecution.failedHint')}
                                     </p>
 
                                   </div>
@@ -1091,9 +1082,7 @@ export default function ProsecutionTool() {
                                       }
                                     />
 
-                                    تحميل النتيجة
-                                    الأقل من
-                                    500KB
+                                    {t('tools.prosecution.downloadFailedResult')}
                                   </button>
                                 )}
 
@@ -1161,16 +1150,15 @@ export default function ProsecutionTool() {
 
                   <div>
                     <h4 className="text-white font-black">
-                      تم تجهيز{' '}
+                      {t('tools.prosecution.batchTitle')}{' '}
                       {
                         completedCount
                       }{' '}
-                      ملفات
+                      {t('tools.prosecution.batchTitleSuffix')}
                     </h4>
 
                     <p className="text-sm text-white mt-1">
-                      جميع الملفات الناجحة أصبحت
-                      جاهزة للرفع.
+                      {t('tools.prosecution.batchHint')}
                     </p>
                   </div>
 
@@ -1198,8 +1186,7 @@ export default function ProsecutionTool() {
             />
 
             <span>
-              اختر صورة أو PDF وسنتولى الباقي
-              تلقائيًا.
+              {t('tools.prosecution.emptyHelper')}
             </span>
 
           </div>

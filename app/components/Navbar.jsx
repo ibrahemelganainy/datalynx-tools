@@ -5,7 +5,16 @@ import React, {
   useEffect,
 } from 'react';
 
-export default function Navbar() {
+import { usePathname } from 'next/navigation';
+
+import { useLocale } from './LocaleProvider';
+import { getAlternatePath } from '../lib/i18n/articles';
+
+export default function Navbar({ activeTool = null }) {
+  const { locale, t } = useLocale();
+
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] =
     useState(false);
 
@@ -33,33 +42,75 @@ export default function Navbar() {
     };
   }, []);
 
-  // روابط الخدمات ومركز المعرفة
+  /*
+   * روابط الخدمات ومركز المعرفة.
+   *
+   * الروابط نسبية بدون بادئة حتى يمكن استخدام نفس النافبار في النسخة
+   * العربية (التي تحتفظ بالروابط الأصلية) وفي النسخة الإنجليزية
+   * تحت /en بدون أي تغيير في السلوك الحالي.
+   */
   const navLinks = [
     {
-      name: 'الرئيسية',
+      name: t('nav.home'),
       href: '/',
     },
     {
-      name: 'ضغط الصور',
+      name: t('nav.imageCompression'),
       href: '/#image-compression',
     },
     {
-      name: 'تحويل الصيغ',
+      name: t('nav.formatConverter'),
       href: '/#format-converter',
     },
     {
-      name: 'ضغط PDF',
+      name: t('nav.pdfCompression'),
       href: '/#pdf-compression',
     },
     {
-      name: 'بوابة النيابة العامة',
+      name: t('nav.prosecutionPortal'),
       href: '/#prosecution-portal',
     },
     {
-      name: 'مركز المعرفة',
+      name: t('nav.articles'),
       href: '/articles',
     },
   ];
+
+  /*
+   * مبدّل اللغة.
+   *
+   * رابط عادي قابل للزحف (a href) وليس زرًا JavaScript حتى تصل النسخة
+   * الإنجليزية إلى محركات البحث.
+   *
+   * الوجهة تُحسب من المسار الحالي حتى ينتقل المستخدم إلى الصفحة
+   * المكافئة بدل العودة إلى الصفحة الرئيسية. عندما لا يوجد مقابل
+   * مترجم تُستخدم الصفحة الرئيسية كقيمة احتياطية آمنة.
+   */
+  const otherLocale = locale === 'ar' ? 'en' : 'ar';
+
+  const localeSwitchLabel =
+    locale === 'ar' ? 'EN' : 'AR';
+
+  /*
+   * نحافظ على الأداة المفتوحة حاليًا في الـhash عبر مزامنة الـhash بعد
+   * الترطيب فقط. القيمة الابتدائية الفارغة تعني أن أول HTML المُولَّد
+   * (قبل أي JavaScript) يحتوي رابطًا نظيفًا وليس hash عابرًا.
+   */
+  const [hash, setHash] = useState('');
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash || '');
+
+    syncHash();
+
+    window.addEventListener('hashchange', syncHash);
+
+    return () =>
+      window.removeEventListener('hashchange', syncHash);
+  }, []);
+
+  const localeSwitchHref =
+    `${getAlternatePath(pathname, locale)}${hash}`;
 
   return (
     <nav
@@ -146,6 +197,20 @@ export default function Navbar() {
             </a>
           ))}
 
+          {/* AR / EN */}
+          <a
+            href={localeSwitchHref}
+            lang={otherLocale}
+            aria-label={t('nav.languageSwitcherLabel')}
+            className={`px-3.5 py-2 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+              isScrolled
+                ? 'border-slate-200 text-slate-600 hover:text-datalynx-primary hover:border-datalynx-primary/40'
+                : 'border-white/20 text-slate-200 hover:text-white hover:border-white/40'
+            }`}
+          >
+            {localeSwitchLabel}
+          </a>
+
           {/* datalynx.space */}
           <a
             href="https://datalynx.space"
@@ -161,7 +226,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          aria-label="فتح القائمة"
+          aria-label={t('nav.openMenu')}
           aria-expanded={isOpen}
           className={`md:hidden p-2 transition-colors duration-300 cursor-pointer ${
             isScrolled
@@ -210,7 +275,7 @@ export default function Navbar() {
         }`}
       >
 
-        <div className="p-6 flex flex-col gap-4 text-right">
+        <div className="p-6 flex flex-col gap-4 text-start">
 
           {navLinks.map((link) => (
             <a
@@ -224,6 +289,19 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
+
+          <a
+            href={localeSwitchHref}
+            lang={otherLocale}
+            onClick={() => setIsOpen(false)}
+            className="inline-flex items-center gap-2 self-start px-4 py-2 rounded-full border border-slate-200 text-sm font-bold text-datalynx-dark hover:text-datalynx-primary hover:border-datalynx-primary/40 transition-colors cursor-pointer"
+          >
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+              {locale === 'ar' ? 'AR' : 'EN'}
+            </span>
+
+            <span>{t('languages.switchTo')}</span>
+          </a>
 
           <hr className="border-slate-100" />
 

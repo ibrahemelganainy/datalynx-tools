@@ -11,7 +11,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
   title: {
     default: "Data Lynx Tools - أدوات احترافية لضغط الصور، تحويل الصيغ، وملفات PDF",
@@ -60,8 +59,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  /*
+   * `lang="ar"` و `dir="rtl"` هما الافتراضي، وهما الصحيح لجميع
+   * المسارات العربية التي تحتفظ بالجذر `/` كما هي.
+   *
+   * صفحات `/en` تعيد تعريف سمات html الخاصة بها في
+   * app/(en)/en/layout.jsx بحيث يحتوي HTML المُولَّد فعليًا على
+   * `lang="en"` و `dir="ltr"` بدون أي اعتماد على JavaScript.
+   */
   return (
     <html lang="ar" dir="rtl" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <head>
+        {/*
+         * خط Tajawal هو واجهة الموقع الفعلية (انظر --font-sans في
+         * globals.css). كان مستوردًا عبر @import داخل CSS، وهو ما يجعله
+         * مكتشفًا متأخرًا ويحجب العرض. نقله إلى <head> مع preconnect
+         * يجعل الاتصال يبدأ مبكرًا بنفس العائلة ونفس الأوزان بالضبط.
+         */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-slate-900 text-slate-100 font-sans">
         {children}
       </body>

@@ -37,6 +37,8 @@ import {
   createOutputFilename,
 } from '../lib/image/imageUtils';
 
+import { useLocale } from './LocaleProvider';
+
 const ACCEPTED_TYPES = [
   'image/jpeg',
   'image/png',
@@ -61,6 +63,8 @@ function createItem(file) {
 }
 
 export default function ImageCompressionTool() {
+  const { t } = useLocale();
+
   const fileInputRef = useRef(null);
 
   const [items, setItems] = useState([]);
@@ -171,8 +175,7 @@ export default function ImageCompressionTool() {
         updateItem(item.id, {
           status: 'error',
           result: null,
-          error:
-            'تعذر ضغط هذه الصورة. جرّب صيغة أخرى أو صورة أصغر.',
+          error: t('tools.imageCompression.error'),
         });
       }
     }
@@ -282,13 +285,11 @@ export default function ImageCompressionTool() {
         </div>
 
         <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-          ضغط الصور
+          {t('tools.imageCompression.title')}
         </h2>
 
         <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          قلّل حجم صورك مع التحكم في مستوى الضغط،
-          الأبعاد، وصيغة الإخراج، مع تنفيذ المعالجة
-          بالكامل داخل متصفحك.
+          {t('tools.imageCompression.description')}
         </p>
       </div>
 
@@ -331,15 +332,15 @@ export default function ImageCompressionTool() {
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            اسحب الصور وأفلتها هنا
+            {t('tools.common.dropImages')}
           </h3>
 
           <p className="text-sm text-slate-500 mb-6">
-            JPG, PNG, WebP, BMP
+            {t('tools.imageCompression.formatsHint')}
           </p>
 
           <span className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold text-sm hover:bg-slate-700 transition-colors">
-            اختيار الصور
+            {t('tools.common.selectImages')}
           </span>
         </div>
       </div>
@@ -363,11 +364,11 @@ export default function ImageCompressionTool() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
                 <div>
                   <h3 className="text-lg font-bold text-white">
-                    إعدادات الضغط
+                    {t('tools.imageCompression.settingsTitle')}
                   </h3>
 
                   <p className="text-sm text-slate-500 mt-1">
-                    كل الإعدادات تتم على جهازك
+                    {t('tools.imageCompression.settingsSubtitle')}
                   </p>
                 </div>
 
@@ -381,7 +382,7 @@ export default function ImageCompressionTool() {
                     icon={faTrash}
                     className="text-xs"
                   />
-                  مسح الكل
+                  {t('tools.common.clearAll')}
                 </button>
               </div>
 
@@ -391,7 +392,7 @@ export default function ImageCompressionTool() {
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <label className="text-sm font-bold text-slate-300">
-                      مستوى الضغط
+                      {t('tools.imageCompression.levelLabel')}
                     </label>
 
                     <span className="text-sm font-black text-blue-400">
@@ -422,10 +423,10 @@ export default function ImageCompressionTool() {
 
                   <div className="flex justify-between text-[11px] text-white font-bold mt-2">
                     <span>
-                      جودة أعلى
+                      {t('tools.imageCompression.levelLowerQuality')}
                     </span>
                     <span>
-                      حجم أصغر
+                      {t('tools.imageCompression.levelSmallerSize')}
                     </span>
                   </div>
                 </div>
@@ -433,7 +434,7 @@ export default function ImageCompressionTool() {
                 {/* Dimensions */}
                 <div>
                   <label className="block text-sm font-bold text-slate-300 mb-3">
-                    أقصى بُعد للصورة
+                    {t('tools.imageCompression.maxDimensionLabel')}
                   </label>
 
                   <select
@@ -453,7 +454,7 @@ export default function ImageCompressionTool() {
                     className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500"
                   >
                     <option value="0">
-                      بدون تغيير الأبعاد
+                      {t('tools.imageCompression.maxDimensionUnchanged')}
                     </option>
                     <option value="1280">
                       1280px
@@ -473,14 +474,14 @@ export default function ImageCompressionTool() {
                   </select>
 
                   <p className="text-[11px] text-slate-600 mt-2">
-                    الحفاظ على نسبة الأبعاد تلقائيًا
+                    {t('tools.imageCompression.maxDimensionHint')}
                   </p>
                 </div>
 
                 {/* Format */}
                 <div>
                   <label className="block text-sm font-bold text-slate-300 mb-3">
-                    صيغة الإخراج
+                    {t('tools.imageCompression.outputFormatLabel')}
                   </label>
 
                   <select
@@ -498,7 +499,7 @@ export default function ImageCompressionTool() {
                     className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500"
                   >
                     <option value="webp">
-                      WebP — موصى بها
+                      {t('tools.imageCompression.outputFormatWebp')}
                     </option>
 
                     <option value="jpeg">
@@ -513,7 +514,7 @@ export default function ImageCompressionTool() {
                   {settings.outputFormat ===
                     'jpeg' && (
                     <p className="text-[11px] text-amber-400/80 mt-2">
-                      الصور الشفافة ستتحول إلى خلفية غير شفافة.
+                      {t('tools.imageCompression.jpegTransparencyWarning')}
                     </p>
                   )}
                 </div>
@@ -537,14 +538,14 @@ export default function ImageCompressionTool() {
                         icon={faSpinner}
                         className="animate-spin"
                       />
-                      جاري ضغط الصور...
+                      {t('tools.imageCompression.processing')}
                     </>
                   ) : (
                     <>
                       <FontAwesomeIcon
                         icon={faCompress}
                       />
-                      ابدأ الضغط
+                      {t('tools.imageCompression.start')}
                     </>
                   )}
                 </button>
@@ -559,7 +560,7 @@ export default function ImageCompressionTool() {
                     <FontAwesomeIcon
                       icon={faFileZipper}
                     />
-                    تحميل الكل ZIP
+                    {t('tools.common.downloadAllZip')}
                   </button>
                 )}
               </div>
@@ -569,12 +570,12 @@ export default function ImageCompressionTool() {
                 <div className="mt-6">
                   <div className="flex items-center justify-between text-xs mb-2">
                     <span className="text-slate-400">
-                      معالجة الصورة{' '}
+                      {t('tools.common.processingImage')}{' '}
                       {Math.min(
                         processingIndex + 1,
                         items.length
                       )}{' '}
-                      من {items.length}
+                      {t('tools.common.of')} {items.length}
                     </span>
 
                     <span className="text-blue-400 font-bold">
@@ -635,7 +636,7 @@ export default function ImageCompressionTool() {
                             </h4>
 
                             <p className="text-xs text-slate-500 mt-1">
-                              الحجم الأصلي:{' '}
+                              {t('tools.common.originalSize')}{' '}
                               {formatFileSize(
                                 item.file.size
                               )}
@@ -667,7 +668,7 @@ export default function ImageCompressionTool() {
                               icon={faSpinner}
                               className="animate-spin"
                             />
-                            جاري الضغط...
+                            {t('tools.imageCompression.itemProcessing')}
                           </div>
                         )}
 
@@ -700,7 +701,7 @@ export default function ImageCompressionTool() {
                                 </div>
 
                                 <div className="text-[11px] text-slate-500">
-                                  تم توفير{' '}
+                                  {t('tools.imageCompression.saved')}{' '}
                                   {savings.toFixed(
                                     1
                                   )}
@@ -721,7 +722,7 @@ export default function ImageCompressionTool() {
                               <FontAwesomeIcon
                                 icon={faDownload}
                               />
-                              تحميل
+                              {t('tools.common.download')}
                             </button>
                           </div>
                         )}
@@ -741,7 +742,7 @@ export default function ImageCompressionTool() {
           <FontAwesomeIcon
             icon={faRotate}
           />
-          يمكنك إضافة عدة صور ومعالجتها دفعة واحدة
+          {t('tools.imageCompression.emptyHelper')}
         </div>
       )}
     </div>

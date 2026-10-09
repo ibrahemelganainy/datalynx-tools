@@ -50,27 +50,14 @@ import {
   calculateSavings,
 } from '../lib/image/imageUtils';
 
-const OUTPUT_GROUPS = [
-  {
-    id: 'common',
-    label: 'الصيغ الشائعة',
-  },
-  {
-    id: 'modern',
-    label: 'الصيغ الحديثة',
-  },
-  {
-    id: 'advanced',
-    label: 'الصيغ المتقدمة',
-  },
-  {
-    id: 'icons',
-    label: 'الأيقونات',
-  },
-  {
-    id: 'technical',
-    label: 'الصيغ التقنية',
-  },
+import { useLocale } from './LocaleProvider';
+
+const OUTPUT_GROUP_IDS = [
+  'common',
+  'modern',
+  'advanced',
+  'icons',
+  'technical',
 ];
 
 function createItem(file) {
@@ -92,6 +79,8 @@ function getOutputOptionsByGroup(groupId) {
 }
 
 export default function FormatConverterTool() {
+  const { t } = useLocale();
+
   const fileInputRef = useRef(null);
 
   const [items, setItems] = useState([]);
@@ -286,7 +275,7 @@ export default function FormatConverterTool() {
           result: null,
           error:
             error?.message ||
-            'تعذر تحويل الملف. تأكد من أن الملف سليم ومدعوم ثم حاول مرة أخرى.',
+            t('tools.formatConverter.error'),
         });
       }
     }
@@ -429,13 +418,11 @@ export default function FormatConverterTool() {
         </div>
 
         <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-          تحويل صيغ الصور
+          {t('tools.formatConverter.title')}
         </h2>
 
         <p className="text-white max-w-2xl mx-auto leading-relaxed">
-          حوّل صورك بين مجموعة واسعة من
-          الصيغ مباشرة داخل متصفحك، دون رفع
-          ملفاتك إلى خادم.
+          {t('tools.formatConverter.description')}
         </p>
       </div>
 
@@ -480,7 +467,7 @@ export default function FormatConverterTool() {
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            اسحب الصور وأفلتها هنا
+            {t('tools.common.dropImages')}
           </h3>
 
           <p className="text-sm text-white mb-6 max-w-2xl leading-relaxed">
@@ -497,7 +484,7 @@ export default function FormatConverterTool() {
             }}
             className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold text-sm hover:bg-slate-700 hover:border-slate-600 transition-all cursor-pointer"
           >
-            اختيار الملفات
+            {t('tools.common.selectFiles')}
           </button>
         </div>
       </div>
@@ -528,12 +515,11 @@ export default function FormatConverterTool() {
 
                 <div>
                   <h3 className="text-lg font-bold text-white">
-                    إعدادات التحويل
+                    {t('tools.formatConverter.settingsTitle')}
                   </h3>
 
                   <p className="text-sm text-white mt-1">
-                    اختر صيغة الإخراج والإعدادات
-                    المناسبة للملفات المحددة.
+                    {t('tools.formatConverter.settingsSubtitle')}
                   </p>
                 </div>
 
@@ -547,7 +533,7 @@ export default function FormatConverterTool() {
                     icon={faXmark}
                   />
 
-                  مسح الكل
+                  {t('tools.common.clearAll')}
                 </button>
 
               </div>
@@ -560,7 +546,7 @@ export default function FormatConverterTool() {
                 {/* Output Format */}
                 <div>
                   <label className="block text-sm font-bold text-white mb-3">
-                    صيغة الإخراج
+                    {t('tools.formatConverter.outputFormatLabel')}
                   </label>
 
                   <select
@@ -575,11 +561,11 @@ export default function FormatConverterTool() {
                     }
                     className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-emerald-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
                   >
-                    {OUTPUT_GROUPS.map(
-                      (group) => {
+                    {OUTPUT_GROUP_IDS.map(
+                      (groupId) => {
                         const options =
                           getOutputOptionsByGroup(
-                            group.id
+                            groupId
                           );
 
                         if (!options.length) {
@@ -588,8 +574,10 @@ export default function FormatConverterTool() {
 
                         return (
                           <optgroup
-                            key={group.id}
-                            label={group.label}
+                            key={groupId}
+                            label={t(
+                              `tools.formatConverter.outputGroups.${groupId}`
+                            )}
                           >
                             {options.map(
                               (format) => (
@@ -610,8 +598,7 @@ export default function FormatConverterTool() {
                   </select>
 
                   <p className="text-xs text-white mt-2 leading-relaxed">
-                    تتغير الخيارات المتاحة حسب
-                    الصيغة والمحرك المستخدم.
+                    {t('tools.formatConverter.outputFormatHint')}
                   </p>
                 </div>
 
@@ -619,7 +606,7 @@ export default function FormatConverterTool() {
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <label className="text-sm font-bold text-white">
-                      الجودة
+                      {t('tools.formatConverter.qualityLabel')}
                     </label>
 
                     <span className="text-sm font-black text-emerald-400">
@@ -650,20 +637,19 @@ export default function FormatConverterTool() {
                   />
 
                   <div className="flex justify-between text-xs text-white mt-2">
-                    <span>حجم أصغر</span>
-                    <span>جودة أعلى</span>
+                    <span>{t('tools.formatConverter.qualitySmallerSize')}</span>
+                    <span>{t('tools.formatConverter.qualityHigherQuality')}</span>
                   </div>
 
                   <p className="text-xs text-white mt-2 leading-relaxed">
-                    التحكم في الجودة متاح للصيغ
-                    التي تدعم الضغط الفقدي.
+                    {t('tools.formatConverter.qualityHint')}
                   </p>
                 </div>
 
                 {/* Max Dimension */}
                 <div>
                   <label className="block text-sm font-bold text-white mb-3">
-                    أقصى بُعد للصورة
+                    {t('tools.formatConverter.maxDimensionLabel')}
                   </label>
 
                   <select
@@ -683,7 +669,7 @@ export default function FormatConverterTool() {
                     className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <option value="0">
-                      بدون تغيير
+                      {t('tools.formatConverter.maxDimensionUnchanged')}
                     </option>
 
                     <option value="1024">
@@ -712,8 +698,7 @@ export default function FormatConverterTool() {
                   </select>
 
                   <p className="text-xs text-white mt-2 leading-relaxed">
-                    يتم الحفاظ على نسبة أبعاد
-                    الصورة تلقائيًا.
+                    {t('tools.formatConverter.maxDimensionHint')}
                   </p>
                 </div>
 
@@ -743,12 +728,7 @@ export default function FormatConverterTool() {
                     />
 
                     <p className="text-sm text-white leading-relaxed">
-                      هذه الصيغة تعتمد جزئيًا على
-                      إمكانيات المتصفح ومحرك
-                      الصور المتاح. إذا لم يكن
-                      الترميز المطلوب متاحًا، ستظهر
-                      رسالة واضحة بدل إنشاء ملف غير
-                      صالح.
+                      {t('tools.formatConverter.runtimeDependentWarning')}
                     </p>
                   </motion.div>
                 )}
@@ -779,14 +759,11 @@ export default function FormatConverterTool() {
                             className="text-blue-400"
                           />
 
-                          مقاسات الأيقونات
+                          {t('tools.formatConverter.iconSizesTitle')}
                         </h4>
 
                         <p className="text-sm text-white mt-1 leading-relaxed">
-                          اختر المقاسات المطلوبة. سيتم
-                          إنشاء ملف ICO مستقل لكل مقاس،
-                          بالإضافة إلى favicon.ico
-                          متعدد المقاسات.
+                          {t('tools.formatConverter.iconSizesDescription')}
                         </p>
                       </div>
 
@@ -804,7 +781,7 @@ export default function FormatConverterTool() {
                         }
                         className="text-sm text-blue-400 hover:text-blue-300 font-bold transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                       >
-                        تحديد المقاسات الافتراضية
+                        {t('tools.formatConverter.iconSizesReset')}
                       </button>
 
                     </div>
@@ -839,7 +816,7 @@ export default function FormatConverterTool() {
                     </div>
 
                     <p className="text-xs text-white mt-4 leading-relaxed">
-                      المقاسات المحددة حاليًا:{' '}
+                      {t('tools.formatConverter.iconSizesCurrent')}{' '}
                       {settings.iconSizes.length
                         ? settings.iconSizes
                             .map(
@@ -847,7 +824,7 @@ export default function FormatConverterTool() {
                                 `${size}px`
                             )
                             .join(' · ')
-                        : 'لم يتم اختيار أي مقاس'}
+                        : t('tools.formatConverter.iconSizesNone')}
                     </p>
                   </motion.div>
                 )}
@@ -878,7 +855,7 @@ export default function FormatConverterTool() {
                         className="animate-spin"
                       />
 
-                      جاري التحويل...
+                      {t('tools.formatConverter.processing')}
                     </>
                   ) : (
                     <>
@@ -889,8 +866,8 @@ export default function FormatConverterTool() {
                       />
 
                       {isIco
-                        ? 'إنشاء الأيقونات'
-                        : 'بدء التحويل'}
+                        ? t('tools.formatConverter.startIco')
+                        : t('tools.formatConverter.start')}
                     </>
                   )}
                 </button>
@@ -906,7 +883,7 @@ export default function FormatConverterTool() {
                       icon={faFileZipper}
                     />
 
-                    تحميل الكل ZIP
+                    {t('tools.common.downloadAllZip')}
                   </button>
                 )}
 
@@ -919,12 +896,12 @@ export default function FormatConverterTool() {
                 <div className="mt-6">
                   <div className="flex items-center justify-between text-sm mb-2">
                     <span className="text-white">
-                      معالجة الملف{' '}
+                      {t('tools.common.processingFile')}{' '}
                       {Math.min(
                         processingIndex + 1,
                         items.length
                       )}{' '}
-                      من{' '}
+                      {t('tools.common.of')}{' '}
                       {items.length}
                     </span>
 
@@ -943,7 +920,7 @@ export default function FormatConverterTool() {
                   </div>
 
                   <p className="text-xs text-white mt-2">
-                    تتم المعالجة محليًا داخل المتصفح.
+                    {t('tools.formatConverter.processingLocal')}
                   </p>
                 </div>
               )}
@@ -1013,7 +990,7 @@ export default function FormatConverterTool() {
                             </h4>
 
                             <p className="text-sm text-white mt-1">
-                              الحجم الأصلي:{' '}
+                              {t('tools.common.originalSize')}{' '}
                               <span className="font-bold text-white">
                                 {formatFileSize(
                                   item.file.size
@@ -1030,7 +1007,7 @@ export default function FormatConverterTool() {
                                   item.id
                                 )
                               }
-                              aria-label="حذف الملف"
+                              aria-label={t('tools.common.removeFile')}
                               className="w-8 h-8 shrink-0 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
                             >
                               <FontAwesomeIcon
@@ -1050,7 +1027,7 @@ export default function FormatConverterTool() {
                               className="animate-spin"
                             />
 
-                            جاري معالجة الملف...
+                            {t('tools.formatConverter.itemProcessing')}
                           </div>
                         )}
 
@@ -1090,20 +1067,18 @@ export default function FormatConverterTool() {
                                 {icoPack ? (
                                   <>
                                     <div className="font-bold text-emerald-400">
-                                      تم إنشاء{' '}
+                                      {t('tools.formatConverter.icoResult')}{' '}
                                       {
                                         item
                                           .result
                                           .files
                                           .length
                                       }{' '}
-                                      أيقونات
+                                      {t('tools.formatConverter.icoIcons')}
                                     </div>
 
                                     <div className="text-sm text-white mt-1">
-                                      بالإضافة إلى
-                                      favicon.ico
-                                      متعدد المقاسات
+                                      {t('tools.formatConverter.icoFaviconNote')}
                                     </div>
                                   </>
                                 ) : (
@@ -1132,7 +1107,7 @@ export default function FormatConverterTool() {
                                         0 && (
                                         <>
                                           {' '}
-                                          · توفير{' '}
+                                          · {t('tools.formatConverter.saved')}{' '}
                                           {savings.toFixed(
                                             1
                                           )}
@@ -1168,8 +1143,8 @@ export default function FormatConverterTool() {
                               />
 
                               {icoPack
-                                ? 'تحميل حزمة ICO'
-                                : 'تحميل'}
+                                ? t('tools.formatConverter.downloadIcoPack')
+                                : t('tools.common.download')}
                             </button>
 
                           </div>
@@ -1198,8 +1173,7 @@ export default function FormatConverterTool() {
           />
 
           <span>
-            يمكنك اختيار عدة ملفات وتحويلها دفعة
-            واحدة.
+            {t('tools.formatConverter.emptyHelper')}
           </span>
         </div>
       )}

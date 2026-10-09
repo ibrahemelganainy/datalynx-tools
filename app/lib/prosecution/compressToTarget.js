@@ -805,28 +805,50 @@ export async function compressForProsecution(
 
 /**
  * Human-readable result message.
+ *
+ * An optional translator can be passed in so the message follows the
+ * active interface language. The Arabic text is kept as the fallback,
+ * so every existing call site keeps working unchanged.
  */
 export function getProsecutionResultMessage(
-  result
+  result,
+  t
 ) {
   if (!result) {
     return '';
   }
 
+  const translate = (key, fallback) =>
+    typeof t === 'function'
+      ? t(`tools.prosecution.resultMessages.${key}`, fallback)
+      : fallback;
+
   if (result.unchanged) {
-    return 'الملف كان بالفعل ضمن الحد المطلوب ولم تتم إعادة ضغطه.';
+    return translate(
+      'unchanged',
+      'الملف كان بالفعل ضمن الحد المطلوب ولم تتم إعادة ضغطه.'
+    );
   }
 
   if (result.achieved) {
-    return 'تم تجهيز الملف بنجاح ليكون ضمن الحد المطلوب.';
+    return translate(
+      'achieved',
+      'تم تجهيز الملف بنجاح ليكون ضمن الحد المطلوب.'
+    );
   }
 
   if (
     result.outputSize <=
     PROSECUTION_HARD_LIMIT_BYTES
   ) {
-    return 'تم الوصول إلى أقل من 500KB، مع تجاوز الهامش الداخلي بقليل.';
+    return translate(
+      'nearLimit',
+      'تم الوصول إلى أقل من 500KB، مع تجاوز الهامش الداخلي بقليل.'
+    );
   }
 
-  return 'تعذر الوصول إلى أقل من 500KB دون ضغط شديد جدًا.';
+  return translate(
+    'notAchieved',
+    'تعذر الوصول إلى أقل من 500KB دون ضغط شديد جدًا.'
+  );
 }

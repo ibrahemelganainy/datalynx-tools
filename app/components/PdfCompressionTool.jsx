@@ -40,6 +40,8 @@ import {
   formatFileSize,
 } from '../lib/image/imageUtils';
 
+import { useLocale } from './LocaleProvider';
+
 const PDF_ACCEPT =
   '.pdf,application/pdf';
 
@@ -78,6 +80,8 @@ function calculateSavings(
 }
 
 export default function PdfCompressionTool() {
+  const { t } = useLocale();
+
   const fileInputRef =
     useRef(null);
 
@@ -308,7 +312,7 @@ export default function PdfCompressionTool() {
               progress: 0,
               error:
                 error?.message ||
-                'تعذر ضغط ملف PDF. تأكد من أن الملف سليم وغير محمي بكلمة مرور.',
+                t('tools.pdfCompression.error'),
             }
           );
         }
@@ -470,14 +474,11 @@ export default function PdfCompressionTool() {
         </div>
 
         <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-          ضغط ملفات PDF
+          {t('tools.pdfCompression.title')}
         </h2>
 
         <p className="text-white max-w-2xl mx-auto leading-relaxed">
-          قلّل حجم ملفات PDF من داخل متصفحك،
-          مع التحكم في جودة الصفحات ودقة
-          المعالجة. لا يتم رفع ملفاتك إلى
-          خادم.
+          {t('tools.pdfCompression.description')}
         </p>
 
       </div>
@@ -527,11 +528,11 @@ export default function PdfCompressionTool() {
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            اسحب ملفات PDF وأفلتها هنا
+            {t('tools.common.dropPdfs')}
           </h3>
 
           <p className="text-sm text-white mb-6">
-            يمكنك اختيار عدة ملفات دفعة واحدة
+            {t('tools.pdfCompression.dropHint')}
           </p>
 
           <button
@@ -543,7 +544,7 @@ export default function PdfCompressionTool() {
             }}
             className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold text-sm hover:bg-slate-700 hover:border-slate-600 transition-all cursor-pointer"
           >
-            اختيار ملفات PDF
+            {t('tools.common.selectPdfFiles')}
           </button>
 
         </div>
@@ -572,12 +573,11 @@ export default function PdfCompressionTool() {
 
                 <div>
                   <h3 className="text-lg font-bold text-white">
-                    إعدادات الضغط
+                    {t('tools.pdfCompression.settingsTitle')}
                   </h3>
 
                   <p className="text-sm text-white mt-1">
-                    اختر مستوى المعالجة المناسب
-                    لنوع المستند.
+                    {t('tools.pdfCompression.settingsSubtitle')}
                   </p>
                 </div>
 
@@ -595,7 +595,7 @@ export default function PdfCompressionTool() {
                     icon={faXmark}
                   />
 
-                  مسح الكل
+                  {t('tools.common.clearAll')}
                 </button>
 
               </div>
@@ -606,7 +606,7 @@ export default function PdfCompressionTool() {
                 <div>
 
                   <label className="block text-sm font-bold text-white mb-3">
-                    طريقة الضغط
+                    {t('tools.pdfCompression.modeLabel')}
                   </label>
 
                   <select
@@ -631,22 +631,21 @@ export default function PdfCompressionTool() {
                   >
 
                     <option value="smart">
-                      ضغط ذكي — موصى به
+                      {t('tools.pdfCompression.modeSmart')}
                     </option>
 
                     <option value="preserve">
-                      الحفاظ على النص
+                      {t('tools.pdfCompression.modePreserve')}
                     </option>
 
                     <option value="visual">
-                      ضغط بصري قوي
+                      {t('tools.pdfCompression.modeVisual')}
                     </option>
 
                   </select>
 
                   <p className="text-sm text-white mt-2 leading-relaxed">
-                    الضغط الذكي يجرب أكثر من
-                    مسار ويختار النتيجة الأصغر.
+                    {t('tools.pdfCompression.modeHint')}
                   </p>
 
                 </div>
@@ -655,7 +654,7 @@ export default function PdfCompressionTool() {
                 <div>
 
                   <label className="block text-sm font-bold text-white mb-3">
-                    دقة الصفحات
+                    {t('tools.pdfCompression.dpiLabel')}
                   </label>
 
                   <select
@@ -684,27 +683,25 @@ export default function PdfCompressionTool() {
                   >
 
                     <option value="96">
-                      96 DPI — ضغط قوي
+                      {t('tools.pdfCompression.dpi96')}
                     </option>
 
                     <option value="120">
-                      120 DPI — متوازن
+                      {t('tools.pdfCompression.dpi120')}
                     </option>
 
                     <option value="150">
-                      150 DPI — جودة عالية
+                      {t('tools.pdfCompression.dpi150')}
                     </option>
 
                     <option value="200">
-                      200 DPI — جودة مرتفعة جدًا
+                      {t('tools.pdfCompression.dpi200')}
                     </option>
 
                   </select>
 
                   <p className="text-sm text-white mt-2 leading-relaxed">
-                    دقة أعلى تعني جودة أفضل وحجمًا
-                    أكبر، خصوصًا في المستندات
-                    الممسوحة ضوئيًا.
+                    {t('tools.pdfCompression.dpiHint')}
                   </p>
 
                 </div>
@@ -715,7 +712,7 @@ export default function PdfCompressionTool() {
                   <div className="flex justify-between items-center mb-3">
 
                     <label className="text-sm font-bold text-white">
-                      جودة الصور
+                      {t('tools.pdfCompression.qualityLabel')}
                     </label>
 
                     <span className="text-sm font-black text-rose-400">
@@ -755,18 +752,16 @@ export default function PdfCompressionTool() {
 
                   <div className="flex justify-between text-xs text-white mt-2">
                     <span>
-                      حجم أصغر
+                      {t('tools.pdfCompression.qualitySmallerSize')}
                     </span>
 
                     <span>
-                      جودة أعلى
+                      {t('tools.pdfCompression.qualityHigherQuality')}
                     </span>
                   </div>
 
                   <p className="text-sm text-white mt-2 leading-relaxed">
-                    يؤثر هذا الخيار على وضع الضغط
-                    البصري فقط والجزء البصري من
-                    الضغط الذكي.
+                    {t('tools.pdfCompression.qualityHint')}
                   </p>
 
                 </div>
@@ -801,15 +796,11 @@ export default function PdfCompressionTool() {
                       <div>
 
                         <h4 className="text-white font-bold mb-1">
-                          الوضع الذكي
+                          {t('tools.pdfCompression.smartTitle')}
                         </h4>
 
                         <p className="text-sm text-white leading-relaxed">
-                          سنحاول أولًا الحفاظ على
-                          بنية المستند، ثم نختبر
-                          ضغطًا بصريًا للصفحات.
-                          سيتم اختيار الملف الأصغر
-                          تلقائيًا.
+                          {t('tools.pdfCompression.smartDescription')}
                         </p>
 
                       </div>
@@ -848,15 +839,11 @@ export default function PdfCompressionTool() {
                       <div>
 
                         <h4 className="text-white font-bold mb-1">
-                          الحفاظ على النص
+                          {t('tools.pdfCompression.preserveTitle')}
                         </h4>
 
                         <p className="text-sm text-white leading-relaxed">
-                          لن يتم تحويل الصفحات إلى صور،
-                          لذلك تبقى إمكانية تحديد النص
-                          والبحث فيه محفوظة. قد يكون
-                          الانخفاض في الحجم محدودًا لبعض
-                          الملفات.
+                          {t('tools.pdfCompression.preserveDescription')}
                         </p>
 
                       </div>
@@ -895,15 +882,11 @@ export default function PdfCompressionTool() {
                       <div>
 
                         <h4 className="text-white font-bold mb-1">
-                          الضغط البصري
+                          {t('tools.pdfCompression.visualTitle')}
                         </h4>
 
                         <p className="text-sm text-white leading-relaxed">
-                          سيتم إعادة إنشاء صفحات
-                          المستند كصور مضغوطة. هذا
-                          مناسب جدًا للمستندات الممسوحة
-                          ضوئيًا، لكنه قد يلغي إمكانية
-                          تحديد النص والبحث فيه.
+                          {t('tools.pdfCompression.visualDescription')}
                         </p>
 
                       </div>
@@ -938,7 +921,7 @@ export default function PdfCompressionTool() {
                         className="animate-spin"
                       />
 
-                      جاري ضغط PDF...
+                      {t('tools.pdfCompression.processing')}
                     </>
                   ) : (
                     <>
@@ -948,7 +931,7 @@ export default function PdfCompressionTool() {
                         }
                       />
 
-                      ابدأ الضغط
+                      {t('tools.pdfCompression.start')}
                     </>
                   )}
 
@@ -973,7 +956,7 @@ export default function PdfCompressionTool() {
                       }
                     />
 
-                    تحميل الكل ZIP
+                    {t('tools.common.downloadAllZip')}
 
                   </button>
                 )}
@@ -987,13 +970,13 @@ export default function PdfCompressionTool() {
                   <div className="flex items-center justify-between text-sm mb-2">
 
                     <span className="text-white">
-                      معالجة الملف{' '}
+                      {t('tools.common.processingFile')}{' '}
                       {Math.min(
                         processingIndex +
                           1,
                         items.length
                       )}{' '}
-                      من{' '}
+                      {t('tools.common.of')}{' '}
                       {items.length}
                     </span>
 
@@ -1016,8 +999,7 @@ export default function PdfCompressionTool() {
                   </div>
 
                   <p className="text-sm text-white mt-2">
-                    تتم المعالجة بالكامل داخل
-                    المتصفح.
+                    {t('tools.pdfCompression.processingLocal')}
                   </p>
 
                 </div>
@@ -1097,7 +1079,7 @@ export default function PdfCompressionTool() {
                               </h4>
 
                               <p className="text-sm text-white mt-1">
-                                الحجم الأصلي:{' '}
+                                {t('tools.common.originalSize')}{' '}
                                 <span className="font-bold">
                                   {formatFileSize(
                                     item
@@ -1117,7 +1099,7 @@ export default function PdfCompressionTool() {
                                     item.id
                                   )
                                 }
-                                aria-label="حذف الملف"
+                                aria-label={t('tools.common.removeFile')}
                                 className="w-8 h-8 shrink-0 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
                               >
                                 <FontAwesomeIcon
@@ -1146,7 +1128,7 @@ export default function PdfCompressionTool() {
                                     className="animate-spin"
                                   />
 
-                                  جاري معالجة الصفحات...
+                                  {t('tools.pdfCompression.itemProcessing')}
 
                                 </span>
 
@@ -1174,12 +1156,12 @@ export default function PdfCompressionTool() {
 
                               {item.pageTotal && (
                                 <p className="text-sm text-white mt-2">
-                                  الصفحة{' '}
+                                  {t('tools.pdfCompression.page')}{' '}
                                   {
                                     item
                                       .pageCurrent
                                   }{' '}
-                                  من{' '}
+                                  {t('tools.common.of')}{' '}
                                   {
                                     item
                                       .pageTotal
@@ -1236,7 +1218,7 @@ export default function PdfCompressionTool() {
                                   <div>
 
                                     <div className="font-bold text-emerald-400">
-                                      تم ضغط الملف بنجاح
+                                      {t('tools.pdfCompression.success')}
                                     </div>
 
                                     <div className="text-sm text-white mt-1">
@@ -1277,7 +1259,7 @@ export default function PdfCompressionTool() {
                                         .result
                                         .pageCount
                                     }{' '}
-                                    صفحة
+                                    {t('tools.pdfCompression.pageCount')}
 
                                   </span>
 
@@ -1292,7 +1274,7 @@ export default function PdfCompressionTool() {
                                         }
                                       />
 
-                                      النص محفوظ
+                                      {t('tools.pdfCompression.textPreserved')}
 
                                     </span>
                                   ) : (
@@ -1304,7 +1286,7 @@ export default function PdfCompressionTool() {
                                         }
                                       />
 
-                                      صفحات كصور
+                                      {t('tools.pdfCompression.pagesAsImages')}
 
                                     </span>
                                   )}
@@ -1329,7 +1311,7 @@ export default function PdfCompressionTool() {
                                   }
                                 />
 
-                                تحميل PDF المضغوط
+                                {t('tools.pdfCompression.downloadResult')}
 
                               </button>
 
@@ -1360,8 +1342,7 @@ export default function PdfCompressionTool() {
           />
 
           <span>
-            يدعم الموقع معالجة عدة ملفات PDF
-            دفعة واحدة.
+            {t('tools.pdfCompression.emptyHelper')}
           </span>
 
         </div>

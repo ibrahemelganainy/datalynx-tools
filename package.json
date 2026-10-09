@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/set-html-lang.mjs && node scripts/set-sitemap-hreflang.mjs",
     "start": "next start",
     "lint": "eslint"
   },

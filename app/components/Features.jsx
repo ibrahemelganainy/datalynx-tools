@@ -10,12 +10,16 @@ import {
   faCodeBranch
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useLocale } from './LocaleProvider';
+
 export default function Features() {
+  const { t, dictionary } = useLocale();
+
   const features = [
     {
       id: 1,
-      title: "معالجة محلية 100%",
-      desc: "نستخدم تقنيات المتصفح المتقدمة (WebAssembly). ملفاتك لا يتم رفعها إطلاقاً إلى أي سيرفر خارجي.",
+      title: dictionary.features.items[0].title,
+      desc: dictionary.features.items[0].desc,
       icon: faServer,
       iconColor: "text-emerald-400",
       bgClass: "bg-emerald-400/10",
@@ -23,8 +27,8 @@ export default function Features() {
     },
     {
       id: 2,
-      title: "أمان وخصوصية تامة",
-      desc: "بما أن المعالجة تتم على جهازك، فمستنداتك القانونية وصورك الشخصية في أمان تام ولا يمكن لأحد الاطلاع عليها.",
+      title: dictionary.features.items[1].title,
+      desc: dictionary.features.items[1].desc,
       icon: faLock,
       iconColor: "text-blue-400",
       bgClass: "bg-blue-400/10",
@@ -32,8 +36,8 @@ export default function Features() {
     },
     {
       id: 3,
-      title: "سرعة البرق",
-      desc: "تخلص من أوقات الانتظار المملة لرفع وتحميل الملفات. المعالجة تتم في أجزاء من الثانية بفضل موارد جهازك.",
+      title: dictionary.features.items[2].title,
+      desc: dictionary.features.items[2].desc,
       icon: faBoltLightning,
       iconColor: "text-amber-400",
       bgClass: "bg-amber-400/10",
@@ -41,8 +45,8 @@ export default function Features() {
     },
     {
       id: 4,
-      title: "خوارزميات ذكية",
-      desc: "تقنيات ضغط متطورة تحافظ على الجودة العالية للصور ودقة النصوص في ملفات PDF مع تقليل الحجم لأقصى درجة.",
+      title: dictionary.features.items[3].title,
+      desc: dictionary.features.items[3].desc,
       icon: faCodeBranch,
       iconColor: "text-purple-400",
       bgClass: "bg-purple-400/10",
@@ -53,7 +57,7 @@ export default function Features() {
   return (
     <section className="py-24 bg-[#020617] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* عنوان القسم */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
@@ -63,10 +67,10 @@ export default function Features() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-              لماذا تثق في <span className="text-datalynx-primary">أدواتنا؟</span>
+              {t('features.titleBefore')} <span className="text-datalynx-primary">{t('features.titleHighlight')}</span>
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed">
-              صممنا هذه المنصة لتكون المساعد الأول للمحامين والمحترفين، مع التركيز التام على حماية البيانات وسرعة الإنجاز.
+              {t('features.description')}
             </p>
           </motion.div>
         </div>

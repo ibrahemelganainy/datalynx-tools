@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+/*
+ * ملاحظة أداء:
+ *
+ * خط Tajawal كان مستوردًا سابقًا هنا عبر @import من fonts.googleapis.com،
+ * وهو طلب خارجي يحجب العرض ويثبّط العرض الأول (render-blocking).
+ *
+ * تم نقل تحميل الخط إلى <link> في app/layout.tsx مع preconnect،
+ * وبذلك:
+ *
+ * - تبدأ عملية الاتصال بـfonts.googleapis.com وfonts.gstatic.com مبكرًا.
+ * - لا يحتاج المتصفح إلى جلب CSS التطبيق أولًا لاكتشاف الخط.
+ * - نفس عائلة الخط ونفس الأوزان تُطلب بنفس الشكل، فلا يتغير المظهر.
+ */
 @import "tailwindcss";
 
 @theme {

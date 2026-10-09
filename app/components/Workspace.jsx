@@ -13,6 +13,8 @@ import {
   faScaleBalanced,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { useLocale } from './LocaleProvider';
+
 const ImageCompressionTool = dynamic(
   () => import('./ImageCompressionTool'),
   {
@@ -46,12 +48,14 @@ const ProsecutionTool = dynamic(
 );
 
 function ToolLoading() {
+  const { t } = useLocale();
+
   return (
     <div className="min-h-[500px] flex items-center justify-center">
       <div className="flex flex-col items-center gap-4 text-slate-400">
         <div className="w-10 h-10 rounded-full border-2 border-slate-700 border-t-datalynx-primary animate-spin" />
         <span className="text-sm font-bold">
-          جاري تجهيز الأداة...
+          {t('workspace.preparingTool')}
         </span>
       </div>
     </div>
@@ -63,7 +67,8 @@ export default function Workspace({
   onBack,
   onSelectTool,
 }) {
-  
+  const { t, dir } = useLocale();
+
   // تحديث عنوان الصفحة والوصف ديناميكياً لمحركات البحث عند التنقل بين الأدوات
   useEffect(() => {
     const titles = {
@@ -80,14 +85,47 @@ export default function Workspace({
       'prosecution-portal': 'أداة مخصصة لضبط حجم أي مستند تلقائياً ليكون أقل من 500KB لبوابة النيابة العامة.',
     };
 
-    if (titles[activeTool]) {
-      document.title = titles[activeTool];
+    /*
+     * النسخة الإنجليزية من عناوين الأدوات تحت مسار /en فقط.
+     * لا يتم أي تغيير في قيم العناوين أو الأوصاف العربية المستخدمة حاليًا.
+     */
+    const englishTitles = {
+      'image-compression': 'Compress Images Online with High Quality - Data Lynx Tools',
+      'format-converter': 'Convert Image Formats and Create ICO Icons for Free - Data Lynx Tools',
+      'pdf-compression': 'Compress PDF Files and Reduce Their Size - Data Lynx Tools',
+      'prosecution-portal': 'Prosecution Portal - Prepare Documents Under 500KB',
+    };
+
+    const englishDescriptions = {
+      'image-compression': 'Reduce the size of your images intelligently while keeping high quality, locally inside your browser and without uploading them to a server.',
+      'format-converter': 'Convert your images into multiple formats (WebP, PNG, JPEG, ICO) with complete flexibility and high speed.',
+      'pdf-compression': 'Shrink legal documents and scanned PDF files to make them easier to send and upload.',
+      'prosecution-portal': 'A dedicated tool that automatically sizes any document to below 500KB for the prosecution portal.',
+    };
+
+    /*
+     * نحدد اللغة من الـlayout النشط بدل قراءة documentElement، لأن
+     * <html> مملوك للـlayout الجذر ولا يمكن أن يتغير حسب المسار.
+     * الـlayout الإنجليزي يضع dir="ltr" على الحاوية الجذرية
+     * للمحتوى، والـlayout العربي يضع dir="rtl".
+     */
+    const isEnglish =
+      typeof document !== 'undefined' &&
+      dir === 'ltr';
+
+    const activeTitles = isEnglish ? englishTitles : titles;
+    const activeDescriptions = isEnglish
+      ? englishDescriptions
+      : descriptions;
+
+    if (activeTitles[activeTool]) {
+      document.title = activeTitles[activeTool];
     }
 
-    if (descriptions[activeTool]) {
+    if (activeDescriptions[activeTool]) {
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        metaDesc.setAttribute('content', descriptions[activeTool]);
+        metaDesc.setAttribute('content', activeDescriptions[activeTool]);
       }
     }
   }, [activeTool]);
@@ -95,22 +133,22 @@ export default function Workspace({
   const tools = [
     {
       id: 'image-compression',
-      name: 'ضغط الصور',
+      name: t('workspace.tools.image-compression'),
       icon: faCompress,
     },
     {
       id: 'format-converter',
-      name: 'تحويل الصيغ',
+      name: t('workspace.tools.format-converter'),
       icon: faImages,
     },
     {
       id: 'pdf-compression',
-      name: 'ضغط PDF',
+      name: t('workspace.tools.pdf-compression'),
       icon: faFilePdf,
     },
     {
       id: 'prosecution-portal',
-      name: 'بوابة النيابة',
+      name: t('workspace.tools.prosecution-portal'),
       icon: faScaleBalanced,
       isSpecial: true,
     },
@@ -150,10 +188,10 @@ export default function Workspace({
           >
             <FontAwesomeIcon
               icon={faArrowRight}
-              className="text-xs"
+              className="text-xs rtl:rotate-180"
             />
 
-            <span>العودة للخدمات</span>
+            <span>{t('workspace.backToServices')}</span>
           </button>
 
           {/* الأدوات */}
