@@ -33,6 +33,9 @@ const executablePath = CHROME_PATHS.find((p) => fs.existsSync(p));
  * check is a pure DOM inspection. Both are run when their target exists.
  */
 const MODULES = [
+  { file: 'qa-tool-titles.mjs', url: `${ORIGIN}/` },
+  { file: 'qa-google-analytics.mjs', url: `${ORIGIN}/` },
+  { file: 'qa-icons-restored.mjs', url: `${ORIGIN}/` },
   { file: 'qa-ar-preservation.mjs', url: `${ORIGIN}/` },
   { file: 'qa-en-lifecycle.mjs', url: `${ORIGIN}/en` },
   { file: 'qa-language-switch.mjs', url: `${ORIGIN}/` },

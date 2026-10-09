@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Navbar from './Navbar';
@@ -11,6 +11,7 @@ import Workspace from './Workspace';
 
 import { useLocale } from './LocaleProvider';
 import { isValidTool } from '../lib/i18n/tools';
+import { getFinalToolTitle } from '../lib/i18n/toolTitles';
 
 /*
  * صفحة أداة مستقلة.
@@ -39,7 +40,23 @@ import { isValidTool } from '../lib/i18n/tools';
  */
 
 export default function WorkspacePage({ tool }) {
-  const { lhref, dir } = useLocale();
+  const { lhref, dir, locale } = useLocale();
+
+  /*
+   * العنوان عند فتح مسار أداة مستقل مباشرة (/tools/<tool> أو
+   * /en/tools/<tool>).
+   *
+   * بدون هذا الـeffect تبقى الصفحة على عنوان layout الجذر لأن
+   * Workspace لا يُنفّذ تأثيره إلا عندما تتغيّر قيمة activeTool، وهي
+   * ثابتة على المسار المستقل. عند العودة لاحقًا من هذه الصفحة إلى
+   * الرئيسية يستعيد Workspace عنوان التبويب الحالي بنفسه. */
+  useEffect(() => {
+    const title = getFinalToolTitle(locale, tool);
+
+    if (title) {
+      document.title = title;
+    }
+  }, [tool, locale]);
 
   const router = useRouter();
 

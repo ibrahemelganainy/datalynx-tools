@@ -1,13 +1,10 @@
 import React from 'react';
 
 import { LocaleProvider } from '../../../components/LocaleProvider';
-
+import { getToolTitle } from '../../../lib/i18n/toolTitles';
 /*
  * Layout مجموعة مسارات الأدوات العربية (داخل [tool] حتى تتوفر
  * معلمة المسار).
- *
- * الصفحة نفسها لا تُصدّر أي metadata، تمامًا مثل الصفحة الرئيسية: عنوان الأداة ووصفها يُحدَّثان ديناميكيًا من Workspace بنفس
- * الطريقة المستخدمة حاليًا، فلا يوجد نظام ثانٍ لإدارة العناوين.
  *
  * ما يضيفه هذا الـlayout هو الإشارات القابلة للزحف فقط:
  *
@@ -17,6 +14,19 @@ import { LocaleProvider } from '../../../components/LocaleProvider';
  * وكلاهما مشتق من نفس الـslug، فالنسخة العربية تُشير إلى الإنجليزية
  * والعكس صحيح، وx-default يشير إلى العربية لأنها اللغة الافتراضية،
  * بنفس الاستراتيجية المستخدمة في باقي الموقع.
+ *
+ * العنوان: يُكتب هنا للـHTML الثابت أيضًا، لا للعميل فقط.
+ *
+ * كانت القيمة الافتراضية للعنوان تأتي من layout الجذر، وتُعدّلها
+ * بعد ذلك StreamedMetadata بتأثير جانبي على `document.title` بعد
+ * الترطيب. النتيجة كانت أن تحميل الصفحة مباشرةً (أو عمل refresh)
+ * يُبقي عنوان الجذر لحظيًا بدل عنوان الأداة.
+ *
+ * بإضافة العنوان هنا يصبح الـ`<title>` في HTML المبني مكتوبًا
+ * بالعنوان الصحيح من أول بايت، وبنفس البنية تمامًا، فلا يظهر أي
+ * تعارض ولا flash. قالب layout الجذر (%s | Data Lynx Tools) لا
+ * يُطبَّق على هذا الحقل لأن القيمة النهائية جاهزة باللاحقة، وهذا
+ * مُعرّف في app/lib/i18n/toolTitles.js.
  */
 export async function generateMetadata({ params }) {
   const { tool } = await params;
@@ -25,6 +35,8 @@ export async function generateMetadata({ params }) {
   const enUrl = `https://tools.datalynx.space/en/tools/${tool}`;
 
   return {
+    title: getToolTitle('ar', tool) || undefined,
+
     alternates: {
       canonical: arUrl,
 

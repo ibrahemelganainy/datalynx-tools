@@ -15,6 +15,15 @@ import {
 
 import { useLocale } from './LocaleProvider';
 
+/*
+ * عنوان الأداة الحالي يُقرأ من مصدر واحد مشترك (بما في ذلك لاحقة
+ * العلامة مرة واحدة)، وعنوان الصفحة الرئيسية يُقرأ من نفس الملف.
+ */
+import {
+  getFinalToolTitle,
+  getHomeTitle,
+} from '../lib/i18n/toolTitles';
+
 const ImageCompressionTool = dynamic(
   () => import('./ImageCompressionTool'),
   {
@@ -63,72 +72,30 @@ function ToolLoading() {
 }
 
 export default function Workspace({
-  activeTool,
+  activeTool = null,
   onBack,
   onSelectTool,
 }) {
-  const { t, dir } = useLocale();
+  const { t, dir, locale } = useLocale();
 
-  // تحديث عنوان الصفحة والوصف ديناميكياً لمحركات البحث عند التنقل بين الأدوات
+  /*
+   * تحديث عنوان التبويب ديناميكيًا عند التنقل بين الأدوات.
+   *
+   * كانت النسخة السابقة تبني خريطة عناوين محلية وتقرأ اللغة من dir
+   * بدلًا من locale. الآن يُقرأ العنوان من المصدر الوحيد
+   * app/lib/i18n/toolTitles.js، ويُستخدم locale الفعلي القادم من
+   * LocaleProvider (ar أو en).
+   *
+   * الاعتماد على locale أيضًا يُصلح حالة activeTool = null على
+   * الصفحة الرئيسية، حيث تُستعاد قيمة layout الجذر كما هي بدل
+   * ترك عنوان أداة سابقة في التبويب.
+   *
+   * ملاحظة: الوصف meta لم يُعد يُكتب من هنا، تماشيًا مع بقاء قيم
+   * metadata خارج نطاق هذه المهمة بلا تغيير. */
   useEffect(() => {
-    const titles = {
-      'image-compression': 'أداة ضغط الصور أونلاين بجودة عالية - Data Lynx Tools',
-      'format-converter': 'تحويل صيغ الصور وصيغة الأيقونات ICO مجاناً - Data Lynx Tools',
-      'pdf-compression': 'ضغط ملفات PDF وتصغير حجمها للمحامين - Data Lynx Tools',
-      'prosecution-portal': 'بوابة النيابة العامة - ضغط المستندات لأقل من 500KB',
-    };
-
-    const descriptions = {
-      'image-compression': 'قلل حجم صورك بذكاء مع الحفاظ على الدقة العالية محلياً داخل المتصفح وبدون رفعها لسيرفر.',
-      'format-converter': 'حول صورك إلى صيغ متعددة (WebP, PNG, JPEG, ICO) بمرونة كاملة وسرعة فائقة.',
-      'pdf-compression': 'تصغير حجم المستندات القانونية والملفات الممسوحة ضوئياً لتسهيل إرسالها ورفعها.',
-      'prosecution-portal': 'أداة مخصصة لضبط حجم أي مستند تلقائياً ليكون أقل من 500KB لبوابة النيابة العامة.',
-    };
-
-    /*
-     * النسخة الإنجليزية من عناوين الأدوات تحت مسار /en فقط.
-     * لا يتم أي تغيير في قيم العناوين أو الأوصاف العربية المستخدمة حاليًا.
-     */
-    const englishTitles = {
-      'image-compression': 'Compress Images Online with High Quality - Data Lynx Tools',
-      'format-converter': 'Convert Image Formats and Create ICO Icons for Free - Data Lynx Tools',
-      'pdf-compression': 'Compress PDF Files and Reduce Their Size - Data Lynx Tools',
-      'prosecution-portal': 'Prosecution Portal - Prepare Documents Under 500KB',
-    };
-
-    const englishDescriptions = {
-      'image-compression': 'Reduce the size of your images intelligently while keeping high quality, locally inside your browser and without uploading them to a server.',
-      'format-converter': 'Convert your images into multiple formats (WebP, PNG, JPEG, ICO) with complete flexibility and high speed.',
-      'pdf-compression': 'Shrink legal documents and scanned PDF files to make them easier to send and upload.',
-      'prosecution-portal': 'A dedicated tool that automatically sizes any document to below 500KB for the prosecution portal.',
-    };
-
-    /*
-     * نحدد اللغة من الـlayout النشط بدل قراءة documentElement، لأن
-     * <html> مملوك للـlayout الجذر ولا يمكن أن يتغير حسب المسار.
-     * الـlayout الإنجليزي يضع dir="ltr" على الحاوية الجذرية
-     * للمحتوى، والـlayout العربي يضع dir="rtl".
-     */
-    const isEnglish =
-      typeof document !== 'undefined' &&
-      dir === 'ltr';
-
-    const activeTitles = isEnglish ? englishTitles : titles;
-    const activeDescriptions = isEnglish
-      ? englishDescriptions
-      : descriptions;
-
-    if (activeTitles[activeTool]) {
-      document.title = activeTitles[activeTool];
-    }
-
-    if (activeDescriptions[activeTool]) {
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', activeDescriptions[activeTool]);
-      }
-    }
-  }, [activeTool]);
+    document.title =
+      getFinalToolTitle(locale, activeTool) || getHomeTitle(locale);
+  }, [activeTool, locale]);
 
   const tools = [
     {
@@ -184,7 +151,7 @@ export default function Workspace({
           <button
             onClick={onBack}
             type="button"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold transition-all border border-slate-700 hover:border-slate-600 w-full md:w-auto justify-center"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 hover: cursor-pointer text-white text-sm font-bold transition-all border border-slate-700 hover:border-slate-600 w-full md:w-auto justify-center"
           >
             <FontAwesomeIcon
               icon={faArrowRight}
@@ -204,7 +171,7 @@ export default function Workspace({
                   key={tool.id}
                   type="button"
                   onClick={() => onSelectTool(tool.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap hover:cursor-pointer ${
                     isActive
                       ? tool.isSpecial
                         ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40'

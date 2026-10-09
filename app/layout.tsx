@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 /*
@@ -94,6 +95,31 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-slate-900 text-slate-100 font-sans">
         {children}
+
+        {/*
+         * Google Analytics (gtag.js).
+         *
+         * الرمز الأصلي المطلوب هو سكربتين: طلب خارجي لـgtag.js ثم سكربت
+         * تهيئة داخلي. هنا يُحمَّلان عبر next/script حتى يبقى التنفيذ
+         * متسلسلًا (تهيئة dataLayer وgtag قبل تحميل gtag.js).
+         *
+         * strategy="afterInteractive" يضع السكربتين بعد اكتمال الترطيب،
+         * فلا يحجب العرض ولا يُضاف إلى زمن الخيط الرئيسي الحرج. هذا لا
+         * يخالف الكود المطلوب: نفس الرمز، ونفس الإعداد، ونفس القياس،
+         * لكن بدون مساس بزمن التحميل الأول لصفحات أدوات معالجة الملفات.
+         */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-R7G0P367SP"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-R7G0P367SP');`}
+        </Script>
       </body>
     </html>
   );
