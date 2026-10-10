@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LocaleProvider } from '../components/LocaleProvider';
+import InstallAppButton from '../components/InstallAppButton';
 
 /*
  * Layout لمجموعة المسارات العربية.
@@ -30,5 +31,10 @@ export const metadata = {
 };
 
 export default function ArabicLayout({ children }) {
-  return <LocaleProvider locale="ar">{children}</LocaleProvider>;
+  return (
+    <LocaleProvider locale="ar">
+      <InstallAppButton />
+      {children}
+    </LocaleProvider>
+  );
 }

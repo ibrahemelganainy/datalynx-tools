@@ -44,6 +44,7 @@ const MODULES = [
   { file: 'qa-en-lifecycle.mjs', url: `${ORIGIN}/en` },
   { file: 'qa-language-switch.mjs', url: `${ORIGIN}/` },
   { file: 'qa-hash-nav.mjs', url: `${ORIGIN}/` },
+  { file: 'qa-install-button.mjs', url: `${ORIGIN}/` },
   { file: 'qa-assert-export.mjs', url: `${ORIGIN}/en` },
 ];
 

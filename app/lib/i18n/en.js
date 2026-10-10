@@ -27,6 +27,21 @@ export const en = {
     languageSwitcherLabel: 'Switch language',
   },
 
+  /*
+   * Install button. Mirrors the Arabic keys exactly: the same key path is
+   * read in both languages.
+   */
+  install: {
+    button: 'Install app',
+    visibleLabel: 'Download app',
+    description: 'Add Data Lynx Tools to your home screen.',
+    howToTitle: 'Install the app on your phone',
+    iosStep1: "Open Safari's Share menu.",
+    iosStep2: 'Select “Add to Home Screen”.',
+    iosStep3: 'Confirm the addition.',
+    closeInstructions: 'Close instructions',
+  },
+
   hero: {
     badge: '100% secure processing inside your browser',
     titleLine1: 'Professional tools to compress',

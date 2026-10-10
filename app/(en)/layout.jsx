@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LocaleProvider } from '../components/LocaleProvider';
+import InstallAppButton from '../components/InstallAppButton';
 
 /*
  * English layout.
@@ -57,7 +58,10 @@ export default function EnglishLayout({ children }) {
       dir="ltr"
       className="min-h-screen text-slate-100 font-sans"
     >
-      <LocaleProvider locale="en">{children}</LocaleProvider>
+      <LocaleProvider locale="en">
+        <InstallAppButton />
+        {children}
+      </LocaleProvider>
     </div>
   );
 }

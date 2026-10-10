@@ -105,6 +105,21 @@ export default function RootLayout({
           name="google-adsense-account"
           content="ca-pub-1270749804293495"
         />
+
+        {/*
+         * تطبيق الويب القابل للتثبيت (PWA).
+         *
+         * - رابط الـmanifest يسمح للمتصفح بمعرفة الاسم والأيقونات وأسلوب
+         *   العرض standalone، وهو ما يجعل "تثبيت التطبيق" متاحًا على الجوال.
+         * - theme-color يلوّن شريط النظام بلون الواجهة الداكن، والعربية
+         *   أولًا في الـmanifest مع إمكانية تعدد اللغات لاحقًا.
+         * - apple-touch-icon خاص بـiOS الذي لا يقرأ أيقونات الـmanifest.
+         *
+         * الملفات نفسها ثابتة في public/ ولا تُحسب في أي منطق بناء.
+         */}
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#020617" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="min-h-full flex flex-col text-slate-100 font-sans">
         {children}
@@ -130,7 +145,6 @@ export default function RootLayout({
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-
 gtag('config', 'G-R7G0P367SP');`}
         </Script>
       </body>

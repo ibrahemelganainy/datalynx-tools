@@ -1,0 +1,35 @@
+{
+  "id": "/",
+  "name": "Data Lynx Tools - أدوات معالجة الملفات والمستندات",
+  "short_name": "Data Lynx",
+  "description": "أدوات ذكية وسريعة لمعالجة الصور وملفات PDF محلياً داخل متصفحك بأقصى درجات الأمان والخصوصية.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
