@@ -80,9 +80,42 @@ html, body {
 }
 
 body {
-  background-color: #0f172a; /* تم ضبط الخلفية للوضع الداكن الموحد للموقع */
+  background-color: #020617;
   color: #f8fafc;
   font-family: var(--font-sans);
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * الخلفية الموحّدة لكل الصفحات: نفس الجزء العلوي من الصورة المرفقة.
+ *
+ * لون كحلي غامق (#020617) مع خطوط شبكة خافتة جدًا تكاد لا تُرى.
+ *
+ * ملاحظة مهمة: اللون #1e293b المستخدم في الهيرو أفتح من الخلفية بنحو 15%،
+ * لذلك يظهر كخط واضح وحادّ إذا غطّى الصفحة كاملة. هنا استُخدم لون أقرب
+ * إلى الخلفية بكثير مع شفافية منخفضة، فتظهر الشبكة كأثر خفيف هادئ فقط —
+ * بنفس درجة الخفوت في الجزء العلوي من الصورة، دون أي إضاءة زرقاء.
+ *
+ * الطبقة ثابتة وممتدة على منفذ العرض كله، فتغلب على خلفيات الأقسام
+ * الصلبة، فتظهر خلفية واحدة متصلة من أعلى الصفحة إلى أسفلها.
+ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(148, 163, 184, 0.005) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(148, 163, 184, 0.005) 1px,
+      transparent 1px
+    );
+  background-size: 4rem 4rem, 4rem 4rem;
 }

@@ -55,7 +55,7 @@ export default function EnglishLayout({ children }) {
     <div
       lang="en"
       dir="ltr"
-      className="min-h-screen bg-slate-900 text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
     >
       <LocaleProvider locale="en">{children}</LocaleProvider>
     </div>

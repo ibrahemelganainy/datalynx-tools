@@ -129,7 +129,7 @@ function SectionTitle({ children }) {
 export default function CompressImage500KBPage() {
   return (
     <div
-      className="min-h-screen bg-[#020617] text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
       dir="rtl"
     >
       <Navbar />

@@ -55,7 +55,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-24 bg-[#020617] relative border-t border-white/5">
+    <section className="py-24 relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* عنوان القسم */}

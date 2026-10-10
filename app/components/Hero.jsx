@@ -69,7 +69,7 @@ export default function Hero({ onSelectTool }) {
   ];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#020617] pt-32 pb-20">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-20">
 
       {/* خلفية احترافية (إضاءات هادئة وشبكة) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">

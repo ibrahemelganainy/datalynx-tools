@@ -57,7 +57,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#020617] text-slate-400 pt-20 pb-10 relative overflow-hidden">
+    <footer className="text-slate-400 pt-20 pb-10 relative overflow-hidden">
       {/* تأثير إضاءة خفي خلف الفوتر */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-datalynx-primary/50 to-transparent"></div>
 

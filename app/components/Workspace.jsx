@@ -141,7 +141,7 @@ export default function Workspace({
   };
 
   return (
-    <section className="pt-32 pb-16 bg-[#020617] min-h-screen relative">
+    <section className="pt-32 pb-16 min-h-screen relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Workspace Header */}

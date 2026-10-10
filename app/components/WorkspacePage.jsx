@@ -95,7 +95,7 @@ export default function WorkspacePage({ tool }) {
 
   return (
     <div
-      className="min-h-screen bg-slate-900 text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
       dir={dir}
     >
       <Navbar activeTool={tool} />

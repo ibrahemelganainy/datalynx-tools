@@ -37,7 +37,7 @@ export default function AboutContent({ lang = 'ar' }) {
 
   return (
     <div
-      className="min-h-screen bg-[#020617] text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
       lang={lang}
       dir={isEnglish ? 'ltr' : 'rtl'}
     >

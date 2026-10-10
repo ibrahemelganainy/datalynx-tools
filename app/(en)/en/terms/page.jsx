@@ -20,7 +20,7 @@ export default function EnglishTermsPage() {
   return (
     <main
       dir="ltr"
-      className="min-h-screen bg-slate-900 text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
     >
       <div className="max-w-3xl mx-auto px-6 py-20">
         <Link

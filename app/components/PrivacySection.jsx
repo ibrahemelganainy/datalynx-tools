@@ -105,7 +105,7 @@ export default function PrivacySection() {
     <section
       id="knowledge"
       dir={dir}
-      className="relative min-h-screen py-24 bg-[#020617] text-start overflow-hidden flex items-center"
+      className="relative min-h-screen py-24 text-start overflow-hidden flex items-center"
     >
       {/* نفس خلفية الهيرو تماماً */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">

@@ -93,7 +93,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-900 text-slate-100 font-sans">
+      <body className="min-h-full flex flex-col text-slate-100 font-sans">
         {children}
 
         {/*

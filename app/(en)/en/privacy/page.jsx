@@ -22,7 +22,7 @@ export const metadata = {
 export default function EnglishPrivacyPage() {
   return (
     <div
-      className="min-h-screen bg-[#020617] text-slate-100 font-sans"
+      className="min-h-screen text-slate-100 font-sans"
       dir="ltr"
     >
       <Navbar />
