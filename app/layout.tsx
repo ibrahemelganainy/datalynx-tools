@@ -92,6 +92,19 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
         />
+
+        {/*
+         * إثبات ملكية موقع Data Lynx لإعلانات AdSense.
+         *
+         * هذا الوسم مطلوب من AdSense للتحقق من ملكية الموقع، وتم وضعه في
+         * الـlayout الجذري ليظهر داخل <head> في كل صفحة من صفحات الموقع
+         * كما تنصّ تعليمات التحقق. القيمة `ca-pub-...` هي معرّف الناشر
+         * الخاص بالحساب ولا يجوز تغييرها إلا بمعرّف آخر من نفس الحساب.
+         */}
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-1270749804293495"
+        />
       </head>
       <body className="min-h-full flex flex-col text-slate-100 font-sans">
         {children}
