@@ -25,6 +25,8 @@ export const dynamic = 'force-static';
 const STATIC_PAGES = [
   ['', 1, 'weekly'],
   ['articles', 0.8, 'weekly'],
+  ['about', 0.7, 'monthly'],
+  ['contact', 0.7, 'monthly'],
   ['privacy', 0.5, 'monthly'],
   ['terms', 0.5, 'monthly'],
 ];

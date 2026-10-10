@@ -11,11 +11,18 @@ export const en = {
 
   nav: {
     home: 'Home',
+    /*
+     * Label for the Tools dropdown trigger. Only this new key was
+     * added; the four existing tool labels below are unchanged.
+     */
+    tools: 'Tools',
     imageCompression: 'Image Compression',
     formatConverter: 'Format Converter',
     pdfCompression: 'PDF Compression',
     prosecutionPortal: 'Prosecution Portal',
     articles: 'Knowledge Center',
+    about: 'About Us',
+    contact: 'Contact Us',
     openMenu: 'Open menu',
     languageSwitcherLabel: 'Switch language',
   },
@@ -444,5 +451,182 @@ export const en = {
     ar: 'العربية',
     en: 'English',
     switchTo: 'العربية',
+  },
+
+  /*
+   * About page.
+   *
+   * Every statement here is grounded in what the product actually does.
+   * There are deliberately no founding dates, team sizes, awards,
+   * customer counts or partnership claims.
+   */
+  about: {
+    badge: 'About Us',
+    titleLine1: 'Straightforward tools',
+    titleLine2: 'for everyday file work',
+    intro:
+      'Data Lynx Tools is a collection of browser-based utilities for working with images, PDF documents and icon files. The focus is on keeping the steps between you and a finished file as short as possible.',
+
+    whatTitle: 'What the platform offers',
+    whatIntro:
+      'The current tools cover the file tasks that come up most often, and gather them in one place instead of spreading them across several separate websites:',
+
+    items: [
+      {
+        title: 'Image compression',
+        desc: 'Reduce the size of JPG, PNG and WebP images while controlling the compression level and the output dimensions.',
+      },
+      {
+        title: 'Image format conversion',
+        desc: 'Convert between formats such as JPG, PNG, WebP and AVIF, depending on what your browser supports.',
+      },
+      {
+        title: 'ICO and favicon creation',
+        desc: 'Generate icons at multiple sizes together with a multi-size favicon file for use on a website.',
+      },
+      {
+        title: 'PDF compression',
+        desc: 'Shrink PDF documents using different modes that account for the difference between text-based and scanned files.',
+      },
+      {
+        title: 'Preparing files for under 500 KB',
+        desc: 'A dedicated tool that automatically adjusts an image or PDF towards the size limit required by online portals.',
+      },
+    ],
+
+    valueTitle: 'Why these tools',
+    valueIntro:
+      'They are built around recurring, practical problems that anyone handling files runs into:',
+
+    values: [
+      {
+        title: 'Bringing file sizes down',
+        desc: 'Cutting the size that makes a file slow or impossible to upload and send.',
+      },
+      {
+        title: 'Choosing the right format',
+        desc: 'Helping you convert a file into the format a particular website or service expects.',
+      },
+      {
+        title: 'Simplifying repeated tasks',
+        desc: 'Compressing, converting and resizing in a few steps rather than a complicated workflow.',
+      },
+      {
+        title: 'Working directly in the browser',
+        desc: 'Opening a tool and starting work immediately, with nothing to install on your device.',
+      },
+    ],
+
+    privacyTitle: 'How your files are handled',
+    privacyParagraphs: [
+      'The tools are built so that your files are read and processed inside your own browser using the capabilities available there. When you select a file from your device, that file is not sent to a Data Lynx server in order to be compressed or converted.',
+      'Under the current design of the service, copies of the files you select are not stored in a Data Lynx database once processing finishes. The resulting file is produced on your device for you to download.',
+      'That said, no internet-connected system can be guaranteed to be absolutely secure. We therefore recommend a current browser and operating system, and avoiding untrusted devices when handling sensitive documents.',
+    ],
+
+    ctaTitle: 'Ready to try the tools?',
+    ctaDescription:
+      'Start by compressing an image or a PDF, or browse the Knowledge Center to understand how the formats differ and pick the right approach for your files.',
+    ctaPrimary: 'Try the tools',
+    ctaSecondary: 'Browse the Knowledge Center',
+    ctaContact: 'Contact Us',
+  },
+
+  /*
+   * Contact page.
+   *
+   * The contact values are the same ones already used in the site footer.
+   * No opening hours or physical address are shown, because neither is
+   * established anywhere in the project and inventing them would be wrong.
+   */
+  contact: {
+    badge: 'Get in touch',
+    titleLine1: 'Have a question or a suggestion?',
+    titleLine2: "We're here to help",
+    description:
+      'Get in touch with a question, a technical problem, or a suggestion. We will do our best to help as soon as we can.',
+
+    infoTitle: 'Contact details',
+    infoDescription:
+      'You can reach us directly through either of the options below.',
+
+    whatsappLabel: 'WhatsApp',
+    whatsappHint: 'Direct and quick to reach',
+    whatsappValue: '+20 150 707 1671',
+    whatsappCta: 'Open chat',
+
+    emailLabel: 'Email',
+    emailHint: 'For questions and feedback',
+    emailValue: 'lexoffice.datalynx@proton.me',
+    emailCta: 'Send an email',
+
+    privacyNote:
+      'No files are uploaded through this page. When you use the processing tools, the work happens inside your browser.',
+
+    formTitle: 'Contact form',
+    formDescription:
+      'Fill in the details below and a ready-to-send message will be prepared for WhatsApp.',
+
+    nameLabel: 'Name',
+    namePlaceholder: 'Enter your name',
+
+    phoneLabel: 'Phone or WhatsApp number',
+    phonePlaceholder: 'e.g. +20 100 000 0000',
+
+    emailFormLabel: 'Email address (optional)',
+    emailFormPlaceholder: 'example@email.com',
+
+    inquiryLabel: 'Type of inquiry',
+    inquiryPlaceholder: 'Select a type of inquiry',
+
+    messageLabel: 'Message details',
+    messagePlaceholder: 'Describe your question or the problem you ran into',
+
+    requiredHint: 'Fields marked with * are required.',
+
+    submit: 'Prepare message for WhatsApp',
+    submitting: 'Preparing...',
+
+    successTitle: 'Your message is ready',
+    successBody:
+      'WhatsApp opened in a new tab with the message prepared. Review the text, then press send.',
+    fallbackTitle: 'The new tab did not open',
+    fallbackBody:
+      'Your browser may be blocking new tabs. Use the button below to open WhatsApp with the prepared message, or copy the text and send it manually.',
+    fallbackButton: 'Open WhatsApp',
+    copyButton: 'Copy message',
+    copiedButton: 'Copied',
+    sendAnother: 'Send another message',
+    reset: 'Clear the form',
+
+    errorName: 'Please enter your name.',
+    errorPhone: 'Please enter a valid phone or WhatsApp number.',
+    errorInquiry: 'Please choose a type of inquiry.',
+    errorMessage: 'Please write the details of your message.',
+
+    /*
+     * Labels used inside the prepared WhatsApp message. Kept separate
+     * from the form labels so the resulting text reads clearly in each
+     * language.
+     */
+    messageLabels: {
+      name: 'Name',
+      phone: 'Contact number',
+      email: 'Email',
+      inquiry: 'Type of inquiry',
+      message: 'Message details',
+      heading: 'New message from the Contact Us page - Data Lynx Tools',
+    },
+
+    inquiryOptions: {
+      general: 'General inquiry',
+      imageCompression: 'Image compression issue',
+      formatConverter: 'Image conversion issue',
+      pdfCompression: 'PDF compression issue',
+      prosecutionPortal: 'Preparing files for the Prosecution Portal',
+      technical: 'Technical problem',
+      feedback: 'Suggestion or feedback',
+      other: 'Something else',
+    },
   },
 };

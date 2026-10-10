@@ -13,7 +13,9 @@ import {
   faArrowUp,
   faCaretLeft,
   faShieldHalved,
-  faFileContract
+  faFileContract,
+  faCircleInfo,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useLocale } from './LocaleProvider';
@@ -136,6 +138,18 @@ export default function Footer() {
               {t('footer.privacyTitle')}
             </h4>
             <ul className="space-y-4">
+              <li>
+                <a href={lhref('about')} className="group flex items-center gap-2 hover:text-white transition-colors">
+                  <FontAwesomeIcon icon={faCircleInfo} className="text-blue-400 text-xs" />
+                  <span>{t('nav.about')}</span>
+                </a>
+              </li>
+              <li>
+                <a href={lhref('contact')} className="group flex items-center gap-2 hover:text-white transition-colors">
+                  <FontAwesomeIcon icon={faPaperPlane} className="text-amber-400 text-xs" />
+                  <span>{t('nav.contact')}</span>
+                </a>
+              </li>
               <li>
                 <a href={lhref('privacy')} className="group flex items-center gap-2 hover:text-white transition-colors">
                   <FontAwesomeIcon icon={faShieldHalved} className="text-emerald-400 text-xs" />

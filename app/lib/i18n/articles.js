@@ -17,6 +17,8 @@
  *   'articles'        -> /articles                و /en/articles
  *   'privacy'         -> /privacy                 و /en/privacy
  *   'terms'           -> /terms                   و /en/terms
+ *   'about'           -> /about                   و /en/about
+ *   'contact'         -> /contact                 و /en/contact
  *   'articles/<slug>' -> /articles/<slug>          و /en/articles/<enSlug>
  *
  * `en` يساوي `slug` ما لم يكن للمقال الإنجليزي مسار طبيعي مختلف.
@@ -27,6 +29,15 @@ export const ROUTE_MAP = {
   articles: { en: 'articles' },
   privacy: { en: 'privacy' },
   terms: { en: 'terms' },
+
+  /*
+   * صفحتا "من نحن" و"اتصل بنا".
+   *
+   * السلاق نفسه في اللغتين، وهو ما يجعل مبدّل اللغة ينتقل من
+   * /about إلى /en/about (والعكس) بنفس آلية بقية الصفحات.
+   */
+  about: { en: 'about' },
+  contact: { en: 'contact' },
 
   'articles/image-pdf-compression-tools': {
     en: 'articles/image-pdf-compression-tools',
