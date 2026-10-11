@@ -18,6 +18,6 @@ export default function robots() {
       },
     ],
     sitemap: 'https://tools.datalynx.space/sitemap.xml',
-    host: 'https://tools.datalynx.space',
+    
   };
 }
